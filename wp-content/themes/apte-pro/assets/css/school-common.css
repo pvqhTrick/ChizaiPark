@@ -1,0 +1,99 @@
+
+.areaSchool .schoolList {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 48px;
+}
+.areaSchool .schoolList li {
+	margin: 0 76px 0 0;
+}
+.areaSchool .schoolList li:last-child {
+	margin: 0;
+}
+.areaSchool .schoolList a {
+	position: relative;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333333;
+	letter-spacing: 0.5px;
+}
+.areaSchool .schoolList a:before {
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: #333333;
+	transition: all .3s;
+}
+.areaSchool .schoolList li.active a:before {
+	bottom: -9px;
+	width: 100%;
+}
+.areaSchool .schoolMain {
+	position: relative;
+}
+.areaSchool .schoolMain .mainPhoto  {
+}
+.areaSchool .schoolMain .mainPhoto img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+.areaSchool .schoolMain .schoolWrap {
+	position: absolute;
+	top: 48.5%;
+	transform: translateY(-50%);
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}
+.areaSchool .schoolMain .schoolWrap .schoolName {
+	font-size: 40px;
+	font-weight: bold;
+	margin-bottom: 30px;
+    letter-spacing: 3px;
+}
+.areaSchool .schoolMain .schoolWrap .schoolPage {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+@media(max-width:1150px) and (min-width:769px) {
+	.areaSchool .schoolMain .mainPhoto img {
+		min-height: 230px;
+	}
+}
+
+@media(min-width:769px) {
+	.areaSchool .schoolList a:hover:before {
+		width: 100%;
+	}
+}
+
+@media(max-width:768px) {
+	.areaSchool .schoolList {
+		margin-bottom: 28px;
+	}
+	.areaSchool .schoolList li {
+    	margin: 0 34px 0 0;
+	}
+	.areaSchool .schoolList a {
+		font-size: 13px;
+	}
+	.areaSchool .schoolMain {
+		width: 108%;
+		margin-left: -4%;
+	}
+	.areaSchool .schoolMain .schoolWrap .schoolName {
+		font-size: 25px;
+		margin-bottom: 12px;
+		letter-spacing: 2px;
+	}
+	.areaSchool .schoolMain .schoolWrap .schoolPage {
+		font-size: 16px;
+	}
+}

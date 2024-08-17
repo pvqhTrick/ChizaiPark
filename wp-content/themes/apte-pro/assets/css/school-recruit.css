@@ -1,0 +1,182 @@
+.areaSchool {
+    margin-bottom: 40px;
+}
+
+/*AREARECRUIT*/
+
+.areaRecruit {
+    margin-bottom: 80px;
+}
+
+.areaRecruit .recruitWrap {
+    box-shadow: 0 0 40px rgba(51, 51, 51, .10);
+    background-color: #fff;
+    padding: 53px 80px 60px;
+}
+
+.areaRecruit .recruitTable {
+    margin-bottom: 17px;
+}
+
+.areaRecruit .recruitTable tr {
+    display: flex;
+    font-size: 16px;
+    vertical-align: top;
+    border-bottom: 1px solid #ebeef1;
+    padding-bottom: 21px;
+    margin-bottom: 23px;
+}
+
+.areaRecruit .recruitTable tr th {
+    font-weight: bold;
+    text-align: left;
+    width: 200px;
+}
+
+.areaRecruit .recruitTable tr td {
+    font-weight: 400;
+    display: block;
+}
+
+.areaRecruit .recruitTable tr td .distance {
+    margin-top: 17px;
+    margin-bottom: -2px;
+    line-height: 1.25;
+}
+
+.areaRecruit .recruitTable tr td .txtSmall {
+    position: relative;
+    font-size: 13px;
+    line-height: 1.4;
+    display: inline-block;
+    padding-left: 13px;
+}
+
+.areaRecruit .recruitTable tr td .txtSmall:before {
+    content: "※";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.areaRecruit .recruitTable tr td .txtSmall.excluded {
+    padding-left: 0;
+}
+
+.areaRecruit .recruitTable tr td .txtSmall.excluded:before {
+    content: "";
+    display: none;
+}
+
+.areaRecruit .recruitBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.areaRecruit .recruitBtn .btnPrint {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 20px;
+}
+
+.areaRecruit .recruitBtn .btnPrint a {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #333333;
+    border-radius: 50px;
+    padding: 12px 0;
+}
+
+.areaRecruit .recruitBtn .btnPrint a span {
+    background: url(../images/school/icon-print.png) no-repeat right center/18px;
+    padding-right: 33px;
+}
+
+/*END-AREARECRUIT*/
+@media(max-width: 950px) and (min-width: 769px) {
+    .areaRecruit .recruitWrap {
+        padding: 53px 40px 60px;
+    }
+}
+
+@media(max-width: 850px) and (min-width: 769px) {
+    .areaRecruit .recruitBtn {
+        flex-direction: column;
+    }
+
+    .areaRecruit .recruitBtn .btnPrint {
+        margin: 0 auto 20px;
+    }
+}
+
+@media(min-width: 769px) {
+    .areaRecruit .recruitBtn .btnPrint a:hover {
+        background-color: #333333;
+        color: #fff;
+    }
+
+    .areaRecruit .recruitBtn .btnPrint a:hover span {
+        background-image: url(../images/school/icon-print-hover.png);
+    }
+}
+
+@media(max-width: 768px) {
+    .areaRecruit {
+        margin-bottom: 36px;
+    }
+
+    .areaRecruit .recruitTable {
+        margin-bottom: 25px;
+    }
+
+    .areaRecruit .recruitWrap {
+        padding: 24px 14px;
+    }
+
+    .areaRecruit .recruitTable tr {
+        flex-direction: column;
+        font-size: 14px;
+        padding-bottom: 16px;
+        margin-bottom: 14px;
+    }
+
+    .areaRecruit .recruitTable tr th {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    .areaRecruit .recruitTable tr td .txtSmall {
+        font-size: 12px;
+    }
+
+    .areaRecruit .recruitTable tr td .txtSmall.smallBlock {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .areaRecruit .recruitTable tr td .distance {
+        margin-top: 17px;
+        line-height: 1.4;
+    }
+
+    .areaRecruit .recruitBtn {
+        flex-direction: column;
+    }
+
+    .areaRecruit .recruitBtn .btnPrint {
+        margin: 0 auto 10px;
+    }
+
+    .areaRecruit .recruitBtn .btnPrint a {
+        font-size: 14px;
+        padding: 10px 0 11px;
+        letter-spacing: 1px;
+    }
+
+    .areaRecruit .recruitBtn .btnPrint a span {
+        padding: 0 30px;
+        background-position: right 6px top 87%;
+        background-size: 16px;
+    }
+}

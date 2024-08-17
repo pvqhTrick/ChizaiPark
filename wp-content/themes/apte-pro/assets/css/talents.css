@@ -1,0 +1,154 @@
+/*AREATALENTS*/
+
+.areaTalents {
+    margin-bottom: 44px;
+}
+
+.areaTalents .areaTitle {
+    margin-bottom: 48px;
+}
+
+.areaTalents.custody {
+    margin-bottom: 22px;
+}
+
+.areaTalents .areaTitle {
+    margin-bottom: 48px;
+}
+
+.areaTalents .listTalents {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.areaTalents .listTalents li {
+    width: calc(100% / 5 - 28px);
+    margin-right: 35px;
+    margin-bottom: 56px;
+}
+
+.areaTalents .listTalents li .talentsPhoto {
+    box-shadow: 0 0 20px rgba(51, 51, 51, 0.10);
+}
+
+.areaTalents .listTalents li .talentsName {
+    position: relative;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.6);
+    margin-top: -11px;
+    margin-bottom: 6px;
+    padding: 4px 0 5px;
+}
+
+.areaTalents .listTalents li .spelling {
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    letter-spacing: 1.1px;
+}
+
+.areaTalents .talentsTitle {
+    position: relative;
+    border-bottom: 2px solid #333333;
+    padding-bottom: 1px;
+    margin-bottom: 61px;
+}
+
+.areaTalents .talentsTitle:before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #ebeef1;
+}
+
+.areaTalents .talentsTitle .talentsCustody {
+    font-size: 40px;
+    font-weight: 400;
+}
+
+/*END-AREATALENTS*/
+@media(max-width: 950px) and (min-width: 769px) {
+    .areaTalents .listTalents li .talentsName {
+        font-size: 18px;
+        margin-bottom: 4px;
+        padding: 2px 0;
+    }
+
+    .areaTalents .listTalents li .spelling {
+        font-size: 12px;
+        letter-spacing: 0;
+    }
+}
+
+@media(min-width: 769px) {
+
+    .areaTalents .listTalents li:nth-child(5n) {
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 768px) {
+   
+    .areaTalents {
+        margin-bottom: 21px;
+    }
+
+    .areaTalents .areaTitle {
+        margin-bottom: 23px;
+    }
+
+    .areaTalents .areaTitle {
+        margin-bottom: 23px;
+    }
+
+    .areaTalents .listTalents li {
+        width: calc(100% / 3 - 15px);
+        margin-bottom: 25px;
+        margin-right: 22px;
+    }
+
+    .areaTalents .listTalents li:nth-child(3n) {
+        margin-right: 0
+    }
+
+    .areaTalents .listTalents li .talentsName {
+        margin-top: -10px;
+        margin-bottom: 5px;
+    }
+
+    .areaTalents .listTalents li .spelling {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .areaTalents .talentsTitle .talentsCustody {
+        font-size: 26px;
+    }
+
+    .areaTalents .talentsTitle {
+        padding-bottom: 4px;
+        margin-bottom: 38px;
+    }
+
+    .areaTalents.custody {
+        margin-bottom: 12px;
+    }
+}
+
+@media(max-width: 414px) {
+
+    .areaTalents .listTalents {
+        justify-content: space-between;
+    }
+
+    .areaTalents .listTalents li {
+        width: 46.5%;
+        margin-right: 0;
+    }
+}

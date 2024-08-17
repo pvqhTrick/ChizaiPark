@@ -1,0 +1,158 @@
+
+/*areaTeacher*/
+.areaTeacher {
+	margin: 40px 0 80px;
+}
+.areaTeacher .teacherWrap {
+	display: inline-block;
+	width: 100%;
+	background-color: #fff;
+	padding: 53px 60px 61px;
+	box-shadow: 0 0 29px 3px rgba(0,0,0,0.07);
+}
+.areaTeacher .teacherWrap .teacherNote {
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 63px;
+}
+.areaTeacher .teacherWrap .teacherList {
+	margin-bottom: 66px;
+}
+.areaTeacher .teacherWrap .teacherList li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+.areaTeacher .teacherWrap .teacherList li:not(:last-child) {
+	margin-bottom: 53px;
+}
+.areaTeacher .teacherWrap .teacherList li .teacherPhoto {
+	width: 135px;
+	height: 180px;
+	margin-right: 60px;
+}
+.areaTeacher .teacherWrap .teacherList li .teacherPhoto img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+.areaTeacher .teacherWrap .teacherList li .teacherInfo {
+	width: calc(100% - 195px);
+}
+.areaTeacher .teacherWrap .teacherList li .infoWrap .teacherName {
+	background: linear-gradient(95deg, rgba(133, 133, 133, 1) 0%, rgba(51, 51, 51, 1) 100%);
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 4px 9px 5px;
+	margin-bottom: 35px;
+} 
+.areaTeacher .teacherWrap .teacherList li .infoWrap .teacherName span {
+    display: inline-block;
+    margin-left: 40px;
+	font-size: 16px;
+	font-weight: 400;
+}
+.areaTeacher .teacherWrap .teacherList li .teacherPosition {
+	font-size: 16px;
+	font-weight: bold;
+}
+.areaTeacher .teacherWrap .teacherList li .teacherDescrible {
+	font-size: 16px;
+	margin-bottom: 17px;
+}
+.areaTeacher .teacherWrap .teacherRemind {
+	font-size: 20px;
+	text-align: center;
+}
+
+
+@media(max-width:900px) and (min-width:769px) {
+	.areaTeacher .teacherWrap {
+		padding: 30px 40px;
+	}
+	.areaTeacher .teacherWrap .teacherNote {
+		font-size: 18px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherPhoto {
+		margin-right: 30px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherInfo {
+    	width: calc(100% - 165px);
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap .teacherName {
+		font-size: 18px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap .teacherName span {
+		font-size: 14px;
+		margin-left: 20px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherPosition {
+		font-size: 14px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherDescrible {
+		font-size: 14px;
+	}
+	.areaTeacher .teacherWrap .teacherRemind {
+		font-size: 18px;
+	}
+}
+
+@media(max-width:768px) {
+	.areaTeacher {
+		margin-bottom: 40px;
+	}
+	.areaTeacher .teacherWrap {
+		padding: 23px 15px 33px;
+	}
+	.areaTeacher .teacherWrap .teacherNote {
+		font-size: 16px;
+		margin-bottom: 33px;
+	}
+	.areaTeacher .teacherWrap .teacherList {
+    	margin-bottom: 12px;
+	}
+	.areaTeacher .teacherWrap .teacherList li:not(:last-child) {
+    	margin-bottom: 14px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherInfo {
+		width: 100%;
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap {
+		display: flex;
+		align-items: flex-start;
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap .infoPhoto {
+		width: 21.7%;
+		margin-right: 3.6%;
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap .infoPhoto img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap .teacherName  {
+		width: calc(100% - 25.3%);
+		font-size: 16px;
+		padding: 4px 5px 7px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .infoWrap .teacherName span {
+		display: block;
+		font-size: 14px;
+		margin: 6px 0 0;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherPosition {
+		font-size: 12px;
+		margin: -1px 0 2px;
+	}
+	.areaTeacher .teacherWrap .teacherList li .teacherDescrible {
+		font-size: 12px;
+	}
+	.areaTeacher .teacherWrap .teacherRemind {
+		width: calc(100% + 4%);
+    	margin-left: -2%;
+		font-size: 16px;
+	}
+}

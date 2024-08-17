@@ -1,0 +1,61 @@
+/*AREAFAQ*/
+.areaSchool {
+    margin-bottom: 40px;
+}
+
+.areaFaq {
+    margin-bottom: 79px;
+}
+
+.areaFaq .faqList {
+    box-shadow: 0 0 40px rgba(51, 51, 51, .10);
+    background-color: #fff;
+    padding: 60px 60px 48px;
+}
+
+.areaFaq .faqList li {
+    margin-bottom: 48px;
+}
+
+.areaFaq .faqList li:last-child {
+    margin-bottom: 0;
+}
+
+.areaFaq .faqList li .faqQuestion {
+    background: linear-gradient(95deg, rgba(133, 133, 133, 1) 0%, rgba(51, 51, 51, 1) 100%);
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    padding: 3px 20px 6px;
+}
+
+.areaFaq .faqList li .faqAnswer {
+    font-size: 16px;
+    padding: 14px 20px;
+}
+
+/*END-AREAFAQ*/
+
+@media(max-width: 768px) {
+    .areaFaq {
+        margin-bottom: 40px;
+    }
+
+    .areaFaq .faqList {
+        padding: 30px 15px 17px;
+    }
+
+    .areaFaq .faqList li {
+        margin-bottom: 16.5px;
+    }
+
+    .areaFaq .faqList li .faqQuestion {
+        font-size: 16px;
+        padding: 4px 5px 7px 6px;
+    }
+
+    .areaFaq .faqList li .faqAnswer {
+        font-size: 14px;
+        padding: 15px 0;
+    }
+}
