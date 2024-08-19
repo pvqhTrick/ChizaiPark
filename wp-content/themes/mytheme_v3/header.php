@@ -70,7 +70,3 @@
         </div>
     </div>
     <!-- #header -->
-<div id="fixH"></div>
-<div id="main" class="df">
-</div>
-<!-- #main -->

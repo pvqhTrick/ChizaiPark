@@ -4,6 +4,12 @@
  */
 get_header() ?>
 
+<div id="fixH"></div>
+<div id="main" class="df">
+    <h2 class="mainTitle">セミナー情報</h2>
+</div>
+<!-- #main -->
+
 <div id="content">
     <div id="breadcrumbs">
         <div class="bigInner">

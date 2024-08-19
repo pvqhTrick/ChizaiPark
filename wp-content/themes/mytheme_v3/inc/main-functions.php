@@ -45,8 +45,10 @@ function theTaxs( $tax_slug = 'category' ) {
 function theme_pagination( $post_query = null ) {
     global $paged, $wp_query;
     
-    $translate['next'] = '>';
-    $translate['prev'] = '<'; 
+    $translate['next'] = '>>';
+    $translate['prev'] = '<<'; 
+    $translate['last'] = '>>>';
+    $translate['first'] = '<<<'; 
     
     if( empty( $paged ) ) $paged = 1;
     $prev = $paged - 1;             
@@ -67,10 +69,13 @@ function theme_pagination( $post_query = null ) {
     if( $total > 1 )
     {
         echo '<div class="pagingNav">';
-        echo '<ul class="pagi_nav_list">';
+        echo '<ul class="navList">';
         
+        echo '<li class="prev"><a class="hover" href="'. previous_posts(false) .'">'. $translate['first'] .'</a></li>';
+
+
         if( $paged > 1 ){
-            echo '<li class="p-control prev"><a href="'. previous_posts(false) .'">'. $translate['prev'] .'</a></li>';
+            echo '<li class="prev"><a class="hover" href="'. previous_posts(false) .'">'. $translate['prev'] .'</a></li>';
         }
 
         for( $i = 1; $i <= $total; $i++ ){
@@ -91,6 +96,9 @@ function theme_pagination( $post_query = null ) {
         if( $paged < $total ){
             echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['next'] .'</a></li>';
         }
+
+        echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['last'] .'</a></li>';
+
 
       	echo '</ul>';
       	echo '</div>';
@@ -119,3 +127,20 @@ function the_single_pagination() {
     </ul>
 <?php
 }
+
+// INCREASE VIEW AS POST TYPE JOSEIKIN
+function increase_post_view($post_id) {
+    // Kiểm tra nếu đây là một bài viết (post)
+    if( is_single() ) {
+        $views = get_post_meta($post_id, 'view', true);
+        $views++;
+        update_post_meta($post_id, 'view', $views);
+    }
+}
+add_action('wp_head', function() {
+    if (is_single()) {
+        increase_post_view(get_the_ID());
+    }
+});
+
+//AJAX SEARCH AREA

@@ -3,6 +3,13 @@
  * The template for displaying Archive chizai
  */
 get_header() ?>
+
+<div id="fixH"></div>
+<div id="main" class="df">
+    <h2 class="mainTitle">知財の活用事例</h2>
+</div>
+<!-- #main -->
+
 <div id="content">
     <div id="breadcrumbs">
         <div class="bigInner">

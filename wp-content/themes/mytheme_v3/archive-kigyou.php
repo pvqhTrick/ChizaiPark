@@ -2,7 +2,23 @@
 /**
  * The template for displaying Archive kigyou
  */
-get_header() ?>
+get_header();
+
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+$listKigyou = new WP_Query(array(
+    'post_type' => 'kigyou',
+    'posts_per_page' => '5',
+    'paged' => $paged,
+));
+
+?>
+
+<div id="fixH"></div>
+<div id="main" class="df">
+    <h2 class="mainTitle">企業の知財紹介</h2>
+</div>
+<!-- #main -->
 
 <div id="content">
     <div id="breadcrumbs">
@@ -87,25 +103,7 @@ get_header() ?>
                     </li>
                 </ul>
 
-                <div class="pagingNav">
-                    <ul class="navList">
-                        <li class="first"><a class="hover" href="javascript:void(0);">
-                                <<< /a>
-                        </li>
-                        <li class="prev"><a class="hover" href="javascript:void(0);">
-                                << /a>
-                        </li>
-                        <li class="active"><a>1</a></li>
-                        <li><a href="javascript:void(0);">2</a></li>
-                        <li><a href="javascript:void(0);">3</a></li>
-                        <li><a href="javascript:void(0);">4</a></li>
-                        <li><a href="javascript:void(0);">5</a></li>
-                        <li class="next"><a class="hover" href="javascript:void(0);">></a></li>
-                        <li class="last"><a class="hover" href="javascript:void(0);">>></a></li>
-                    </ul>
-                </div>
-                <!-- pagingNav -->
-            </div>
+                <?php theme_pagination() ?>
         </div>
     </div>
 </div>
