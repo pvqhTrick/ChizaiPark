@@ -5,41 +5,72 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><?php wp_title('|', true, 'right'); ?></title>
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="myicon.png" />
     <meta name="description" content=" content " />
     <meta name="keywords" content=" content " />
     <meta name="author" content=" content " />
     <meta name="robots" content=" all " />
     <meta name="googlebot" content=" all ">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <?php wp_head() ?>
 </head>
 
-<body <?php body_class() ?>>
-<div id="header">
-    <?php if(is_home()) : ?>
-    <div class="loading" id="loading-screen">
-        <div class="loadingWrap">
-            <video autoplay muted src="<?php echo get_theme_file_uri('assets/video/aptepro_movinglogo.mp4') ?>"  poster="http://1able-test.com/aptepro/design/index_loading.jpg"></video >
+<body>
+    <div id="header">
+        <div class="bannerTop">
+            <div class="bigInner df">
+                <h3 class="slo1">知財の情報が盛りだくさん！助成金・補助金を使って知財を守ろう</h3>
+                <h3 class="slo2 tnr">
+                    <span class="slo21">SAKAMOTO & PARTNERS</span>
+                    <span class="slo22">SAKAMOTO INTERNATIONAL PATENT OFFICE</span>
+                </h3>
+            </div>
         </div>
-    </div>
-    <?php endif; ?>
-    <div class="inner">
         <div class="headerBar">
-            <p class="logo"><a class="hover" href="<?php echo home_url() ?>"><img src="<?php echo get_theme_file_uri('/assets/images/common/logo.png')?>" alt=""></a></p>
-            <div class="hamburger sp">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="bigInner df">
+                <div class="logo"><a class="hover" href="<?php homeUrl() ?>"><img src="<?php themeUrl() ?>/assets/images/common/logo.svg" alt=""></a></div>
+                <div class="headerInfo df pc">
+                    <div class="formSearch">
+                        <form action="">
+                            <input type="text" class="inputSearch" placeholder="フリーワードで検索">
+                        </form>
+                    </div>
+                    <ul class="listBtn df">
+                        <li><a href="#">知財パークとは</a></li>
+                        <li><a href="#">無料会員登録</a></li>
+                        <li class="cta hover"><a href="#">ログイン</a></li>
+                    </ul>
+                </div>
+                <div class="hamburger close sp">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
         <div class="mainMenu">
-            <ul class="menu">
-                <?php wp_nav_menu(['theme_location'=>'headerMenu', 'container'=>'']); ?>
-            </ul>
+            <div class="menuNav">
+                <div class="bigInner">
+                   
+                    <?php wp_nav_menu(array('theme_location' => 'primary', 'container' =>'', 'menu_class' => 'menu df')); ?>
+                    
+                    <div class="headerInfo df sp">
+                        <div class="formSearch">
+                            <form action="">
+                                <input type="text" class="inputSearch" placeholder="フリーワードで検索">
+                            </form>
+                        </div>
+                        <ul class="listBtn df">
+                            <li><a href="#">知財パークとは</a></li>
+                            <li><a href="#">無料会員登録</a></li>
+                            <li class="cta hover"><a href="#">ログイン</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<!-- #header -->
+    <!-- #header -->
 <div id="fixH"></div>
+<div id="main" class="df">
+</div>
+<!-- #main -->
