@@ -2,6 +2,29 @@
 /**
  * The sidebar containing the secondary widget area of TOP PAGE
  */
+
+$listChizai = new WP_Query(array(
+	'post_type' => 'chizai',
+	'posts_per_page' => 3,
+));
+$listVentureCapital = new WP_Query(array(
+	'post_type' => 'venture-capital',
+	'posts_per_page' => 3,
+));
+$listKigyou = new WP_Query(array(
+	'post_type' => 'kigyou',
+	'posts_per_page' => 3,
+));
+$listTopViewJoseikin = new WP_Query(array(
+	'post_type' => 'joseikin',
+	'posts_per_page' => 5,
+	'meta_query' => array(
+		'key' => 'field_name',
+	),
+	'orderby' => array(
+        'view' => 'DESC',
+    ),
+));
 ?>
 <div class="sideBar">
 	<div class="areaPatent">
@@ -28,93 +51,69 @@
 	</div>
 	<!-- areaPatent -->
 
+	<?php if( $listChizai->have_posts() ): ?>
 	<div class="areaIntell">
 		<h2 class="intellTitle">知財の活用事例</h2>
-
 		<ul class="listIntell">
+			<?php while( $listChizai->have_posts() ): $listChizai->the_post(); ?>
 			<li>
 				<p class="date">2020年07月13日</p>
 				<p class="cate"><a href="#">ベンチャー</a></p>
 				<p class="text"><a href="#" class="hover">外国特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</a></p>
 			</li>
-			<li>
-				<p class="date">2020年07月13日</p>
-				<p class="cate"><a href="#">特許</a></p>
-				<p class="text"><a href="#" class="hover">外国特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</a></p>
-			</li>
-			<li>
-				<p class="date">2020年07月13日</p>
-				<p class="cate"><a href="#">商標</a></p>
-				<p class="text"><a href="#" class="hover">外国特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</a></p>
-			</li>
+			<?php endwhile; wp_reset_postdata(); ?>
 		</ul>
-		<p class="btnMore"><a href="#"><span>知財活用事例へ</span></a></p>
+		<p class="btnMore"><a href="<?php echo home_url('/chizai/') ?>"><span>知財活用事例へ</span></a></p>
 	</div>
 	<!-- areaIntell -->
+	<?php endif; ?>
 
+	<?php if( $listVentureCapital->have_posts() ): ?>
 	<div class="areaVentures">
 		<h2 class="ventureTitle">ベンチャー・キャピタル</h2>
 		<ul class="ventureList">
-			<li><a href="#" class="hover">日本ベンチャーキャピタル株式会社</a></li>
-			<li><a href="#" class="hover">日本ベンチャーキャピタル株式会社</a></li>
-			<li><a href="#" class="hover">日本ベンチャーキャピタル株式会社</a></li>
+			<?php while( $listVentureCapital->have_posts() ): $listVentureCapital->the_post(); ?>
+			<li><a href="<?php the_permalink()?>" class="hover"><?php the_title() ?></a></li>
+			<?php endwhile; wp_reset_postdata(); ?>
 		</ul>
-		<p class="btnMore"><a href="#"><span>ベンチャー・キャピタルへ</span></a></p>
+		<p class="btnMore"><a href="<?php echo home_url('/venture-capital/') ?>"><span>ベンチャー・キャピタルへ</span></a></p>
 	</div>
 	<!-- areaVenture -->
+	<?php endif; ?>
 
+	<?php if( $listKigyou->have_posts() ): ?>
 	<div class="areaExamples">
 		<h2 class="examplesTitle">企業の活用事例</h2>
 		<ul class="examplesList">
+			<?php while( $listKigyou->have_posts() ): $listKigyou->the_post(); ?>
 			<li>
 				<a href="#" class="hover">
 					<p class="co">株式会社〇〇〇〇〇〇</p>
 					<p class="exLink">国内特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</p>
 				</a>
 			</li>
-			<li>
-				<a href="#" class="hover">
-					<p class="co">株式会社〇〇〇〇〇〇</p>
-					<p class="exLink">国内特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</p>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="hover">
-					<p class="co">株式会社〇〇〇〇〇〇</p>
-					<p class="exLink">国内特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</p>
-				</a>
-			</li>
+			<?php endwhile; ?>
 		</ul>
-		<p class="btnMore"><a href="#"><span>企業の活用事例</span></a></p>
+		<p class="btnMore"><a href="<?php echo home_url('/kigyou/') ?>"><span>企業の活用事例</span></a></p>
 	</div>
 	<!-- areaExamples -->
+	<?php endif; ?>
 
-
+	<?php 
+	if( $listTopViewJoseikin->have_posts() ): 
+	$rank = 1;
+	?> 
 	<div class="areaRanking">
 		<h2 class="rankingTitle">アクセスランキング</h2>
 		<ul class="listRank">
+			<?php while( $listTopViewJoseikin->have_posts() ): $listTopViewJoseikin->the_post(); ?>
 			<li>
-				<p class="numRank"><span class="num numone">1</span>位</p>
-				<p class="rankDetail"><a href="#" class="hover">外国特許出願費用助税金事業第一次申込開始（令和2年度）</a></p>
+				<p class="numRank"><span class="num numone"><?php echo $rank; $rank++ ?></span>位</p>
+				<p class="rankDetail"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?></a></p>
 			</li>
-			<li>
-				<p class="numRank"><span class="num numtwo">2</span>位</p>
-				<p class="rankDetail"><a href="#" class="hover">国内特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</a></p>
-			</li>
-			<li>
-				<p class="numRank"><span class="num numthree">3</span>位</p>
-				<p class="rankDetail"><a href="#" class="hover">外国特許出願費用助税金事業第一次申込開始（令和2年度）</a></p>
-			</li>
-			<li>
-				<p class="numRank"><span class="num">4</span>位</p>
-				<p class="rankDetail"><a href="#" class="hover">本庶氏の提訴に、小野薬品「争う方針」…「オプジーボ」関連特許</a></p>
-			</li>
-			<li>
-				<p class="numRank"><span class="num">5</span>位</p>
-				<p class="rankDetail"><a href="#" class="hover">＜元特許庁審査官・弁護士から見た＞ 他社特許回避・無効化の
-						基礎・すすめ方とそのノウハ…</a></p>
-			</li>
+			<?php endwhile; wp_reset_postdata(); ?>
 		</ul>
 	</div>
+	<?php endif; ?>
 </div>
 <!-- sideBar -->
