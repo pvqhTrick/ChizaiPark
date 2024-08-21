@@ -14,6 +14,10 @@ function add_theme_assets_for_head() {
     } elseif ( is_single() ) {
         if (is_singular('joseikin') || is_singular('chizai')) {
             wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/joseikin-detail.css', array('main-common-css'));
+        } elseif (is_singular('kigyou')) {
+            wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/kigyou-detail.css', array('main-common-css'));
+        } elseif (is_singular('seminar')) {
+            wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/seminar-detail.css', array('main-common-css'));
         }
     } elseif ( is_post_type_archive('joseikin') ) {
         wp_enqueue_style('list-style', get_template_directory_uri() . '/assets/css/joseikin.css');
@@ -25,8 +29,9 @@ function add_theme_assets_for_head() {
         wp_enqueue_style('list-style', get_template_directory_uri() . '/assets/css/kigyou.css');
     } elseif ( is_page('company') ) {
         wp_enqueue_style('list-style', get_template_directory_uri() . '/assets/css/company.css');
-    } elseif ( is_page('contact') || is_page('thanks') || is_page('contact-confirm') ) {
+    } elseif ( is_page('contact') || is_page('thank') || is_page('finish') ) {
         wp_enqueue_style('contact-style', get_template_directory_uri() . '/assets/css/contact.css');
+        wp_enqueue_script('custommscrollbar', get_template_directory_uri() .'/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js',array('contact-style') );
     }
 }
 add_action('wp_enqueue_scripts', 'add_theme_assets_for_head');

@@ -2,7 +2,10 @@
 /**
  * The template for displaying Kigyou detail
  */
-get_header() ?>
+get_header();
+
+?>
+<?php display_mainTitle('知財パークとは') ?>
 <div id="content">
     <div id="breadcrumbs">
         <div class="bigInner">
@@ -17,18 +20,16 @@ get_header() ?>
 
     <div class="areaDetail">
         <div class="bigInner">
+            <?php while( have_posts() ): the_post(); ?>
             <div class="blockDetail">
-                <h2 class="detailTitle">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br class="pc">◯◯◯◯◯◯◯◯◯◯</h2>
+                <h2 class="detailTitle"><?php the_title() ?></h2>
                 <div class="boxContent">
                     <div class="boxName">
-                        <h3 class="nameCompany">株式会社〇〇〇〇〇〇</h3>
+                        <h3 class="nameCompany"><?php the_content(); ?></h3>
                         <ul class="social">
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-fb.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-tw.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-line.svg" alt=""></a></li>
+                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-fb.svg" alt=""></a></li>
+                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-tw.svg" alt=""></a></li>
+                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-line.svg" alt=""></a></li>
                         </ul>
                     </div>
                     <!-- BOXNAME -->
@@ -36,12 +37,9 @@ get_header() ?>
                     <div class="boxCompany">
                         <h4 class="companyTitle">会社情報</h4>
                         <div class="companyWrap">
-                            <p class="companyPhoto"><img src="assets/images/venture-capital/company-photo.jpg"
-                                    alt="会社情報"></p>
+                            <p class="companyPhoto"><img src="<?php the_field('company_img') ?>" alt="会社情報"></p>
                             <div class="companyContent">
-                                <p class="companyText">
-                                    ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                                </p>
+                                <p class="companyText"><?php the_field('company_info') ?></p>
                                 <p class="companyLink"><a href="javascript:void(0);">コーポレートサイトへ</a></p>
                             </div>
                         </div>
@@ -49,42 +47,41 @@ get_header() ?>
                     <!-- BOXCOMPANY -->
 
                     <div class="boxFieldContent">
+                        <?php if( get_field('patent_application_history') && get_field('patent_application_history_img') ): ?>
                         <div class="itemField">
                             <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <p class="fieldText">
-                                ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                            </p>
-                            <p class="fieldPhoto"><img src="assets/images/venture-capital/photo-image.jpg" alt=""></p>
+                            <p class="fieldText"><?php the_field('patent_application_history'); ?></p>
+                            <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img'); ?>" alt=""></p>
                         </div>
+                        <?php endif; ?>
 
+                        <?php if( get_field('patent_application_history_2') && get_field('patent_application_history_img_2') ): ?>
                         <div class="itemField itemField2">
                             <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <p class="fieldText">
-                                ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br>◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                            </p>
+                            <p class="fieldText"><?php the_field('patent_application_history_2'); ?></p>
+                            <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img_2'); ?>" alt=""></p>
                         </div>
+                        <?php endif; ?>
 
+                        <?php if( get_field('patent_application_history_3') && get_field('patent_application_history_img_3') ): ?>
                         <div class="itemField rPhoto">
                             <h4 class="fieldTitle">特許申請の経緯</h4>
                             <div class="fieldWrap">
-                                <p class="fieldText fieldText2">
-                                    ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br>◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                                </p>
-                                <p class="fieldPhoto"><img src="assets/images/venture-capital/photo-image-02.jpg"
-                                        alt=""></p>
+                                <p class="fieldText fieldText2"><?php the_field('patent_application_history_3'); ?></p>
+                                <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img_2'); ?>" alt=""></p>
                             </div>
                         </div>
+                        <?php endif; ?>
 
+                        <?php if( get_field('patent_application_history_4') && get_field('patent_application_history_img_4') ): ?>
                         <div class="itemField lPhoto">
                             <h4 class="fieldTitle">特許申請の経緯</h4>
                             <div class="fieldWrap">
-                                <p class="fieldText fieldText2">
-                                    ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br>◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                                </p>
-                                <p class="fieldPhoto"><img src="assets/images/venture-capital/photo-image-02.jpg"
-                                        alt=""></p>
+                                <p class="fieldText fieldText2"><?php the_field('patent_application_history_4'); ?></p>
+                                <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img_4'); ?>" alt=""></p>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
                     <!-- BOXFIELDCONTENT -->
 
@@ -114,16 +111,14 @@ get_header() ?>
                     <div class="colRight">
                         <p class="date"><span class="time">2020.07.31</span> UPDATE</p>
                         <ul class="social">
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-fb.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-tw.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-line.svg" alt=""></a></li>
+                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-fb.svg" alt=""></a></li>
+                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-tw.svg" alt=""></a></li>
+                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-line.svg" alt=""></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <?php endwhile; wp_reset_postdata(); ?>
         </div>
     </div>
 

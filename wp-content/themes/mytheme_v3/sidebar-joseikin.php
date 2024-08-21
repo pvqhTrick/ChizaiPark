@@ -1,8 +1,8 @@
 <?php
 $areas = get_terms(array(
-'taxonomy'   => 'area',
-'hide_empty' => false,
-'parent'     => 0, 
+    'taxonomy'   => 'area',
+    'hide_empty' => false,
+    'parent'     => 0, 
 ));
 
 if($areas): ?>
@@ -11,7 +11,7 @@ if($areas): ?>
         <h2 class="regionTitle">地域別</h2>
         <?php foreach($areas as $area): ?>
         <div class="regionBox">
-            <h3 class="listregionTitle first"><?php echo $area->name ?></h3>
+            <h3 class="listregionTitle first"><a href="<?php echo get_term_link( $area ) ?>"><?php echo $area->name ?></a></h3>
             <?php 
             $child_area = get_terms( array(
                 'taxonomy'   => 'area',

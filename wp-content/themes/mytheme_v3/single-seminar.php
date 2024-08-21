@@ -2,10 +2,10 @@
 /**
  * The template for displaying Seminar detail
  */
-get_header() ?>
-<div id="main" class="df">
-    <h2 class="mainTitle">セミナー情報</h2>
-</div>
+get_header();
+
+?>
+<?php display_mainTitle('セミナー情報') ?>
 <!-- #main -->
 
 <div id="content">
@@ -21,6 +21,7 @@ get_header() ?>
     <div class="areaSaminarDetail">
         <div class="bigInner">
             <div class="wrapContent">
+                <?php while( have_posts() ): the_post(); ?>
                 <h2 class="infoTitle">オンラインセミナー：契約の基礎と知的財産権リスクに関わる取決めに<br>ついて </h2>
                 <ul class="social">
                     <li><a href="javascript:void(0);" class="hover"><img src="assets/images/seminar/icon-fb.svg"
@@ -49,7 +50,8 @@ get_header() ?>
                     <h4>問い合わせ先</h4>
                     <p>03-0000-1111（セミナー事務局）</p>
                 </div>
-                <p class="buttonSeminarDetail"><a href="javascript:void(0)">応募ページへ移動</a></p>
+                <p class="buttonSeminarDetail"><a href="<?php echo home_url('/seminar/') ?>">応募ページへ移動</a></p>
+                <?php endwhile; ?>
             </div>
         </div>
     </div>

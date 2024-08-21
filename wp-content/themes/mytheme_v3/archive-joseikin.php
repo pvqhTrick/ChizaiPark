@@ -10,7 +10,7 @@ $areas = get_terms( array(
     'parent'     => 0,
 ));
 
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$paged = get_query_paged();
 
 $listJoseikin = new WP_Query(array(
     'post_type' => 'joseikin',
@@ -20,10 +20,7 @@ $listJoseikin = new WP_Query(array(
 
 ?>
 
-<div id="fixH"></div>
-<div id="main" class="df">
-    <h2 class="mainTitle">助成金情報</h2>
-</div>
+<?php display_mainTitle('助成金情報'); ?>
 <!-- #main -->
 
 <div id="content">
@@ -67,7 +64,7 @@ $listJoseikin = new WP_Query(array(
                 </div>
                 <!-- boxNarrow -->
                  
-                <?php if( $listJoseikin ):  ?>
+                <?php if( $listJoseikin->have_posts() ):  ?>
                 <ul class="listInfo">
                     <?php while( $listJoseikin->have_posts() ): $listJoseikin->the_post(); ?>
                     <li>

@@ -4,13 +4,9 @@
  */
 get_header();
 ?>
-
-<div id="fixH"></div>
-
-<div id="main" class="df">
-    <h2 class="mainTitle">お問い合わせ</h2>
-</div>
+<?php display_mainTitle('お問い合わせ') ?>
 <!-- #main -->
+
 <div id="content">
     <div id="breadcrumbs">
         <div class="bigInner">
@@ -34,15 +30,13 @@ get_header();
 
             <h2 class="contactTitle">必須項目を入力して確認ボタンをクリックしてください。</h2>
 
-            <div class="formContact">
-                <?php the_content() ?>
-            </div>
+            <div class="formContact"><?php the_content(); ?></div>
         </div>
     </div>
+    <script type="text/javascript">
+    $(".privacy").mCustomScrollbar({
+    });
+    </script>
 </div>
 <!-- #content -->
-<script type="text/javascript">
-$(".privacy").mCustomScrollbar({
-});
-</script>
 <?php get_footer() ?>

@@ -71,7 +71,7 @@ function theme_pagination( $post_query = null ) {
         echo '<div class="pagingNav">';
         echo '<ul class="navList">';
         
-        echo '<li class="prev"><a class="hover" href="'. previous_posts(false) .'">'. $translate['first'] .'</a></li>';
+        // echo '<li class="prev"><a class="hover" href="'. previous_posts(false) .'">'. $translate['first'] .'</a></li>';
 
 
         if( $paged > 1 ){
@@ -97,7 +97,7 @@ function theme_pagination( $post_query = null ) {
             echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['next'] .'</a></li>';
         }
 
-        echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['last'] .'</a></li>';
+        // echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['last'] .'</a></li>';
 
 
       	echo '</ul>';
@@ -144,3 +144,17 @@ add_action('wp_head', function() {
 });
 
 //AJAX SEARCH AREA
+
+
+// DISPLAY MAI TITLE
+function display_mainTitle($title = 'null'){?>
+    <div id="main" class="df">
+        <h2 class="mainTitle"><?php $title ? $title : '' ?></h2>
+    </div>
+<?php };
+
+function box_count_post($found_posts = 0, $paged = 0, $number_paged = 0){ ?>
+    <p class="boxCount">
+        <span class="quantity"><?php echo $found_posts ?></span>件中<span class="fPost"><?php echo ($paged - 1) * $number_paged + 1 ?></span>〜<span class="lPost"><?php echo min($found_posts, $paged * $number_paged) ?></span>件
+    </p>
+<?php }
