@@ -18,7 +18,7 @@ function add_theme_assets_for_head() {
             wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/kigyou-detail.css', array('main-common-css'));
         } elseif (is_singular('seminar')) {
             wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/seminar-detail.css', array('main-common-css'));
-        }
+        } 
     } elseif ( is_post_type_archive('joseikin') ) {
         wp_enqueue_style('list-style', get_template_directory_uri() . '/assets/css/joseikin.css');
     } elseif ( is_post_type_archive('chizai') ) {

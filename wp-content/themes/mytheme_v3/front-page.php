@@ -23,8 +23,7 @@ $listSeminar = new WP_Query(array(
 
 ?>
 
-<div id="main" class="df">
-</div>
+<?php display_mainTitle(); ?>
 
 <div id="content">
     <div class="bigInner">

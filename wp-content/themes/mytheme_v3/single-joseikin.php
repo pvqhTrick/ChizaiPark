@@ -3,13 +3,11 @@
  * The template for displaying Joseikin detail
  */
 get_header(); ?>
-<div id="fixH"></div>
-<div id="main" class="df">
-    <h2 class="mainTitle">知財パークとは</h2>
-</div>
-<!-- main -->
-<div id="content">
 
+<?php display_mainTitle('知財パークとは'); ?>
+<!-- main -->
+
+<div id="content">
     <div id="breadcrumbs">
         <div class="bigInner">
             <ul class="bcList">
