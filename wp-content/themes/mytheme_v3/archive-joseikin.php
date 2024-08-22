@@ -45,7 +45,7 @@ $listJoseikin = new WP_Query(array(
                                 <select id="region">
                                 <?php
                                 foreach ( $areas as $area ): ?>
-                                    <option value="<?php echo $area->term_id ?>"><?php echo  $area->name ?></option>;
+                                    <option value="<?php echo $area->term_id ?>"><?php echo $area->name ?></option>;
                                 <?php endforeach; ?>
                                 </select>
                             </div>
@@ -69,7 +69,16 @@ $listJoseikin = new WP_Query(array(
                     <?php while( $listJoseikin->have_posts() ): $listJoseikin->the_post(); ?>
                     <li>
                         <div class="cateInfo">
-                            <p class="region"><a href="#" class="hover"><?php the_field('region') ?></a></p>
+                            <p class="region"><a href="#" class="hover">
+                            <?php 
+                            $area = get_first_area();
+                            if($area):
+                            ?>
+                            <a href="<?php echo get_term_link($area); ?>" class="hover">
+                                <?php echo $area->name; ?>
+                            </a>
+                            <?php endif; ?>
+                            </p>
                             <p class="date">公募期間：<?php the_field('application_period') ?> </p>
                         </div>
                         <h3 class="infoTitleNews"><?php the_title() ?></h3>
@@ -97,22 +106,23 @@ $listJoseikin = new WP_Query(array(
 </div>
 <!-- #content -->
 <script>
-    $('#searchArea').on('submit', function(e) {
-    e.preventDefault();
+    jQuery(document).ready(function($) {
+        $('#searchArea').on('submit', function(e) {
+            e.preventDefault();
+            let area = $(this).serialize();
 
-    let form_data = $(this).serialize();
-
-    $.ajax({
-        url: ajaxurl,
-        type: 'GET',
-        data: form_data,
-        success: function(response) {
-            $('#search-results').html(response);
-        },
-        error: function() {
-            $('#search-results').html(response);;
-        }
+            $.ajax({
+                url: "",
+                type: 'GET',
+                data: {
+                    action: 'get_prefectures_by_area',
+                    area: area
+                },
+                success: function(response) {
+                    $('#search-results').html(response);
+                },
+            });
+        });
     });
-});
 </script>
 <?php get_footer() ?>

@@ -65,7 +65,7 @@ $listTopViewJoseikin = new WP_Query(array(
 		</ul>
 		<p class="btnMore"><a href="<?php echo home_url('/chizai/') ?>"><span>知財活用事例へ</span></a></p>
 	</div>
-	<!-- areaIntell -->
+	<!-- areaChizai -->
 	<?php endif; ?>
 
 	<?php if( $listVentureCapital->have_posts() ): ?>
@@ -96,7 +96,7 @@ $listTopViewJoseikin = new WP_Query(array(
 		</ul>
 		<p class="btnMore"><a href="<?php echo home_url('/kigyou/') ?>"><span>企業の活用事例</span></a></p>
 	</div>
-	<!-- areaExamples -->
+	<!-- areaKigyou -->
 	<?php endif; ?>
 
 	<?php 
@@ -115,6 +115,7 @@ $listTopViewJoseikin = new WP_Query(array(
 			<?php endwhile; wp_reset_postdata(); ?>
 		</ul>
 	</div>
+	<!-- areaTop5Joseikin -->
 	<?php endif; ?>
 </div>
 <!-- sideBar -->

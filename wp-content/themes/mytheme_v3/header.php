@@ -70,4 +70,4 @@
         </div>
     </div>
     <!-- #header -->
-    <div id="fixH"></div>
+    <div id="fixH" style="height: 153px"></div>

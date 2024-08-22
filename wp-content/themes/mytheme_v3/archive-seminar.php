@@ -37,14 +37,29 @@ $listSeminar = new WP_Query(array(
                 <ul class="listSemina">
                     <?php while( $listSeminar->have_posts() ): $listSeminar->the_post(); ?>
                     <li>
-                        <p class="date"><?php the_field('date') ?><span class="th">（木）</span></p>
-                        <p class="cate"><a href="#" class="hover">東京都</a></p>
+                        <p class="date"><?php the_date('Y年m月d日'); ?><span class="th">（木）</span></p>
+                        
+                        <?php $cat = get_first_area(); 
+                        if($cat): ?>
+                        <p class="cate">  
+                            <a href="<?php echo get_term_link($cat); ?>" class="hover"><?php echo $cat->name ?></a>
+                        </p>
+                        <?php endif; ?>
+
                         <p class="text"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?></a></p>
                         <div class="rowInfo">
+                            <?php if( get_field('time') ): ?>
                             <p class="time"><?php the_field('time') ?></p>
+                            <?php endif; ?>
+                            <?php if( get_field('location') ): ?>
                             <p class="address"><?php the_field('location') ?></p>
+                            <?php endif; ?>
+                            <?php if( get_field('fee') ): ?>
                             <p class="price"><?php echo (get_field('fee')==0) ? '無料' : get_field('fee') .'円' ?></p>
+                            <?php endif; ?>
+                            <?php if( get_field('host_by') ): ?>
                             <p class="presided"><span>主宰：</span><?php the_field('host_by') ?></p>
+                            <?php endif; ?>
                         </div>
                     </li> 
                     <?php endwhile; ?>

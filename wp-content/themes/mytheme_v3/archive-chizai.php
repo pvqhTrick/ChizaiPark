@@ -4,10 +4,7 @@
  */
 get_header() ?>
 
-<div id="fixH"></div>
-<div id="main" class="df">
-    <h2 class="mainTitle">知財の活用事例</h2>
-</div>
+<?php display_mainTitle('知財の活用事例'); ?>
 <!-- #main -->
 
 <div id="content">

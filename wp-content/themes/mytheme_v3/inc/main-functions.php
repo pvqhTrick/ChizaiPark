@@ -143,13 +143,13 @@ add_action('wp_head', function() {
     }
 });
 
-//AJAX SEARCH AREA
 
 
-// DISPLAY MAI TITLE
-function display_mainTitle($title = 'null'){?>
+
+// DISPLAY MAIN TITLE
+function display_mainTitle($title = ''){?>
     <div id="main" class="df">
-        <h2 class="mainTitle"><?php $title ? $title : '' ?></h2>
+        <h2 class="mainTitle"><?php echo $title ? $title : '' ?></h2>
     </div>
 <?php };
 
@@ -158,3 +158,62 @@ function box_count_post($found_posts = 0, $paged = 0, $number_paged = 0){ ?>
         <span class="quantity"><?php echo $found_posts ?></span>件中<span class="fPost"><?php echo ($paged - 1) * $number_paged + 1 ?></span>〜<span class="lPost"><?php echo min($found_posts, $paged * $number_paged) ?></span>件
     </p>
 <?php }
+
+
+
+// AJAX HANDLER
+function get_prefectures_by_area() {
+    if (isset($_GET['area'])) {
+        $area = $_GET['area'];
+        $child = get_terms(array(
+            'taxonomy' => 'area',
+            'hide_empty' => false,
+            'parent' => get_term_by('slug', $area, 'area')->term_id,
+        ));
+
+        if (!empty($child)):
+            foreach ($child as $child) :?>
+                <option value="<?php echo $child->slug ?>"><?php echo $child->name ?></option>
+            <?php endforeach;
+        else: ?>
+            <option value="">該当する都道府県はありません</option>
+        <?php endif;
+    }
+    wp_die();
+}
+add_action('wp_ajax_get_prefectures_by_area', 'get_prefectures_by_area');
+add_action('wp_ajax_nopriv_get_prefectures_by_area', 'get_prefectures_by_area');
+
+
+function modify_search_query($query) {
+    if ($query->is_search && !is_admin()) {
+        $meta_query = array('relation' => 'AND');
+
+        if (!empty($_GET['area'])) {
+            $query->set('tax_query', array(
+                array(
+                    'taxonomy' => 'area',
+                    'field' => 'slug',
+                    'terms' => $_GET['area'],
+                ),
+            ));
+        }
+
+        if (!empty($_GET['child'])) {
+            $query->set('tax_query', array(
+                array(
+                    'taxonomy' => 'prefecture',
+                    'field' => 'slug',
+                    'terms' => $_GET['child'],
+                ),
+            ));
+        }
+    }
+}
+add_action('pre_get_posts', 'modify_search_query');
+
+function  get_first_area($cat = 'area'){
+    $areas = get_the_terms(get_the_ID(), $cat);
+    return $areas ? array_shift($areas): '';
+}
+                           
