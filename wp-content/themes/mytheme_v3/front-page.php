@@ -52,6 +52,7 @@ $listSeminar = new WP_Query(array(
                 <?php endif; ?>
                 
                 <?php get_template_part('template-parts/search-map'); ?>
+
                 <?php if( $listKigyou->have_posts() ): ?>
                 <div class="areaVenture">
                     <h3 class="boxTitle">知財ニュース</h3>
@@ -59,7 +60,7 @@ $listSeminar = new WP_Query(array(
                         <?php while( $listKigyou->have_posts() ): $listKigyou->the_post(); ?>
                         <li>
                             <p class="date"><?php the_time('Y年m月d日') ?></p>
-                            <p class="linkPost"><a href="javascript:void(0);" class="hover"><?php the_title() ?></a></p>
+                            <p class="linkPost"><a href="<?php the_permalink() ?>" class="hover"><?php the_content() ?></a></p>
                         </li>
                         <?php endwhile; wp_reset_postdata();?> 
                     </ul>

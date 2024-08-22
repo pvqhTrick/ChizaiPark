@@ -5,8 +5,6 @@
 get_header();
 
 ?>
-<?php display_mainTitle('セミナー情報') ?>
-<!-- #main -->
 
 <div id="content">
     <div id="breadcrumbs">

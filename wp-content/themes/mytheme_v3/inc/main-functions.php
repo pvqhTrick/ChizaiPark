@@ -108,7 +108,8 @@ function theme_pagination( $post_query = null ) {
 
 // GET QUERY PAGED NUMBER
 function get_query_paged() {
-	return (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+	return get_query_var('paged') ? get_query_var('paged') : 1;
 }
 
 
@@ -154,11 +155,11 @@ function display_mainTitle(){
         'seminar' => 'セミナー情報',
         'kigyou' => '企業の知財紹介',
     ];
-    if( is_post_type_archive('joseikin' )){
+    if( is_post_type_archive('joseikin') || is_singular('joseikin') ){
         $title = $data_page['joseikin'];
-    } elseif( is_post_type_archive('seminar') ){
+    } elseif( is_post_type_archive('seminar') || is_singular('seminar') ){
         $title = $data_page['seminar'];
-    } elseif(is_post_type_archive('kigyou') ){
+    } elseif(is_post_type_archive('kigyou') || is_singular('kigyou') ){
         $title = $data_page['kigyou'];
     }
 ?>

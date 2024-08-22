@@ -20,8 +20,6 @@ $listJoseikin = new WP_Query(array(
 
 ?>
 
-<!-- #main -->
-
 <div id="content">
     <div id="breadcrumbs">
         <div class="bigInner">
@@ -94,7 +92,8 @@ $listJoseikin = new WP_Query(array(
                 <?php endif; ?>
                 <!-- listInfo -->
 
-                <?php echo theme_pagination( $listJoseikin ) ?>
+                <?php theme_pagination( $listJoseikin );
+                 var_dump(get_query_var('paged') ? get_query_var('paged') :1) ?>
                 <!-- pagingNav -->
 
                 <?php get_template_part('template-parts/search-map'); ?>

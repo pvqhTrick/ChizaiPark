@@ -5,7 +5,6 @@
 get_header();
 
 ?>
-<?php display_mainTitle('知財パークとは') ?>
 
 <div id="content">
     <div id="breadcrumbs">

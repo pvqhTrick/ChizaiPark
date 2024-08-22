@@ -4,7 +4,6 @@
  */
 get_header(); ?>
 
-<?php display_mainTitle('知財パークとは'); ?>
 <!-- main -->
 
 <div id="content">
