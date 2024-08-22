@@ -14,8 +14,6 @@ $listKigyou = new WP_Query(array(
 $found_posts = $listKigyou->found_posts;
 ?>
 
-
-<?php display_mainTitle('企業の知財紹介'); ?>
 <!-- #main -->
 
 <div id="content">

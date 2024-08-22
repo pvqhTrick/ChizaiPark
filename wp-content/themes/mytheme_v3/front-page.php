@@ -21,8 +21,6 @@ $listSeminar = new WP_Query(array(
 ));
 ?>
 
-<?php display_mainTitle(); ?>
-
 <div id="content">
     <div class="bigInner">
         <div class="wrapContent">
@@ -92,8 +90,10 @@ $listSeminar = new WP_Query(array(
                                 <?php if( get_field('location') ): ?>
                                 <p class="address"><?php the_field('location') ?></p>
                                 <?php endif; ?>
-                                <?php if( get_field('fee') ): ?>
-                                <p class="price"><?php echo (get_field('fee')==0) ? '無料' : get_field('fee') .'円' ?></p>
+                                <?php if( get_field('fee') &&  get_field('fee') !== 0 ): ?>
+                                <p class="price"><?php echo  get_field('fee') ?></p>
+                                <?php else: ?>
+                                <p class="price"><?php echo '無料' ?></p>
                                 <?php endif; ?>
                                 <?php if( get_field('host_by') ): ?>
                                 <p class="presided"><span>主宰：</span><?php the_field('host_by') ?></p>

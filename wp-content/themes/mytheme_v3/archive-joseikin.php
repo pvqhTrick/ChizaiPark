@@ -20,7 +20,6 @@ $listJoseikin = new WP_Query(array(
 
 ?>
 
-<?php display_mainTitle('助成金情報'); ?>
 <!-- #main -->
 
 <div id="content">

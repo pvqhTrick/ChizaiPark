@@ -147,9 +147,24 @@ add_action('wp_head', function() {
 
 
 // DISPLAY MAIN TITLE
-function display_mainTitle($title = ''){?>
+function display_mainTitle(){
+    $title = '';
+    $data_page = [
+        'joseikin' => '助成金情報',
+        'seminar' => 'セミナー情報',
+        'kigyou' => '企業の知財紹介',
+    ];
+    if( is_post_type_archive('joseikin' )){
+        $title = $data_page['joseikin'];
+    } elseif( is_post_type_archive('seminar') ){
+        $title = $data_page['seminar'];
+    } elseif(is_post_type_archive('kigyou') ){
+        $title = $data_page['kigyou'];
+    }
+?>
+
     <div id="main" class="df">
-        <h2 class="mainTitle"><?php echo $title ? $title : '' ?></h2>
+        <h2 class="mainTitle"><?php echo $title ?></h2>
     </div>
 <?php };
 

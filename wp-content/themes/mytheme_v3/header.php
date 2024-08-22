@@ -71,3 +71,4 @@
     </div>
     <!-- #header -->
     <div id="fixH" style="height: 153px"></div>
+    <?php display_mainTitle() ?>

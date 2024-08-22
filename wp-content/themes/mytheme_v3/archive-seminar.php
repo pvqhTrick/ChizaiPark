@@ -15,7 +15,6 @@ $listSeminar = new WP_Query(array(
 
 ?>
 
-<?php display_mainTitle('セミナー情報'); ?>
 <!-- #main -->
 
 <div id="content">
