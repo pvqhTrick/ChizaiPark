@@ -26,88 +26,22 @@ $listVentureCapital = new WP_Query(array(
                     <p class="boxCount"><span class="quantity">200</span>件中<span class="fPost">1</span>〜<span
                             class="lPost">10</span>件</p>
                 </div>
-
+                <?php if( $listVentureCapital->have_posts() ): ?>
                 <ul class="boxList">
+                    <?php while ( $listVentureCapital->have_posts() ): $listVentureCapital->the_post(); ?>
                     <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">株式会社ABCDE</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">ノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求めノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求め</a>
+                        <p class="nameCompany">
+                            <a href=""><?php the_title() ?></a>
+                        </p>
+                        <p class="linkPost">
+                            <a href="<?php the_permalink() ?>"><?php the_excerpt() ?></a>
                         </p>
                     </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">◯◯◯◯株式会社</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">ノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求めノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求め</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">株式会社ABCDE</a></p>
-                        <p class="linkPost"><a href="javascript:void(0);">Nintendo
-                                Switch『ファイナルソード』のBGM無断使用は、意図的ではなかったと販売元が声明。Nintendo
-                                Switch『ファイナルソード』のBGM無断使用は、意図的ではなかったと販売元が声明。</a></p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">◯◯◯◯株式会社</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">電通、「アマビエ」商標登録を出願していた…権利独占か、コロナ禍をも“儲けの道具”に電通、「アマビエ」商標登録を出願していた…権利独占か、コロナ禍をも“儲けの道具”に電通、「アマビエ」商標登録を出願していた…</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">株式会社ABCDE</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">コロナ薬普及へ特許共有を　日本提唱でG7援助案、実現に壁コロナ薬普及へ特許共有を　日本提唱でG7援助案、実現に壁コロナ薬普及へ特許共有を　日本提唱でG7援助案、実現に壁</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">◯◯◯◯株式会社</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">ノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求めノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求め</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">株式会社ABCDE</a></p>
-                        <p class="linkPost"><a href="javascript:void(0);">Nintendo
-                                Switch『ファイナルソード』のBGM無断使用は、意図的ではなかったと販売元が声明。Nintendo
-                                Switch『ファイナルソード』のBGM無断使用は、意図的ではなかったと販売元が声明。</a></p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">◯◯◯◯株式会社</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">電通、「アマビエ」商標登録を出願していた…権利独占か、コロナ禍をも“儲けの道具”に電通、「アマビエ」商標登録を出願していた…権利独占か、コロナ禍をも“儲けの道具”に電通、「アマビエ」商標登録を出願していた…</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">株式会社ABCDE</a></p>
-                        <p class="linkPost"><a href="javascript:void(0);">Nintendo
-                                Switch『ファイナルソード』のBGM無断使用は、意図的ではなかったと販売元が声明。Nintendo
-                                Switch『ファイナルソード』のBGM無断使用は、意図的ではなかったと販売元が声明。</a></p>
-                    </li>
-                    <li>
-                        <p class="nameCompany"><a href="javascript:void(0);">◯◯◯◯株式会社</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">電通、「アマビエ」商標登録を出願していた…権利独占か、コロナ禍をも“儲けの道具”に電通、「アマビエ」商標登録を出願していた…権利独占か、コロナ禍をも“儲けの道具”に電通、「アマビエ」商標登録を出願していた…</a>
-                        </p>
-                    </li>
+                    <?php endwhile; wp_reset_postdata();?>
                 </ul>
+                <?php endif; ?>
 
-                <div class="pagingNav">
-                    <ul class="navList">
-                        <li class="first"><a class="hover" href="javascript:void(0);">
-                                <<< /a>
-                        </li>
-                        <li class="prev"><a class="hover" href="javascript:void(0);">
-                                << /a>
-                        </li>
-                        <li class="active"><a>1</a></li>
-                        <li><a href="javascript:void(0);">2</a></li>
-                        <li><a href="javascript:void(0);">3</a></li>
-                        <li><a href="javascript:void(0);">4</a></li>
-                        <li><a href="javascript:void(0);">5</a></li>
-                        <li class="next"><a class="hover" href="javascript:void(0);">></a></li>
-                        <li class="last"><a class="hover" href="javascript:void(0);">>></a></li>
-                    </ul>
-                </div>
-                <!-- pagingNav -->
+                <?php theme_pagination( $listVentureCapital ); ?>
             </div>
         </div>
     </div>
