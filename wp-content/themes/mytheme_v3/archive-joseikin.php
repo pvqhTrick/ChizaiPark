@@ -10,25 +10,25 @@ $areas = get_terms( array(
     'parent'     => 0,
 ));
 
-$paged = get_query_paged();
 
 $listJoseikin = new WP_Query(array(
     'post_type' => 'joseikin',
     'posts_per_page' => '5',
-    'paged' => $paged,
+    'paged' => get_query_paged(),
 ));
 
 ?>
 
 <div id="content">
-    <div id="breadcrumbs">
+    <!-- <div id="breadcrumbs">
         <div class="bigInner">
             <ul class="bcList">
                 <li><a href="#">知財パークTOP</a></li>
                 <li>助成金情報TOP</li>
             </ul>
         </div>
-    </div>
+    </div> -->
+    <?php get_template_part('site-breadcrumb'); ?>
     <!-- #breadcrumbs -->
     <div class="bigInner">
         <div class="wrapContent">
@@ -65,7 +65,7 @@ $listJoseikin = new WP_Query(array(
                 <ul class="listInfo">
                     <?php while( $listJoseikin->have_posts() ): $listJoseikin->the_post(); ?>
                     <li>
-                        <div class="cateInfo">
+                        <div class="cateInfo">  
                             <p class="region"><a href="#" class="hover">
                             <?php 
                             $area = get_first_area();
@@ -92,8 +92,7 @@ $listJoseikin = new WP_Query(array(
                 <?php endif; ?>
                 <!-- listInfo -->
 
-                <?php theme_pagination( $listJoseikin );
-                 var_dump(get_query_var('paged') ? get_query_var('paged') :1) ?>
+                <?php theme_pagination( $listJoseikin ); ?>
                 <!-- pagingNav -->
 
                 <?php get_template_part('template-parts/search-map'); ?>

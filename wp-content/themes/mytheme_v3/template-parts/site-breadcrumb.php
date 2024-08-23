@@ -1,6 +1,6 @@
 <div class="breadcrumb">
-    <ul class="breadLink">
-        <?php if(function_exists('bcn_display_list')){ bcn_display_list(); } ?>
+    <ul class="bigInner">
+        <?php bcn_display_list(); ?>
     </ul>
 </div>
 <!-- .breadcrumb -->

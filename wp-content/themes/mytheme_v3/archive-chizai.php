@@ -2,10 +2,14 @@
 /**
  * The template for displaying Archive chizai
  */
-get_header() ?>
+get_header();
 
-<?php display_mainTitle('知財の活用事例'); ?>
-<!-- #main -->
+$listChizai = new WP_Query(array(
+    'post_type' => 'chizai',
+    'posts_per_page' => 5,
+));
+
+?>
 
 <div id="content">
     <div id="breadcrumbs">

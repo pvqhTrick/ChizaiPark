@@ -103,7 +103,7 @@ get_header();
                 <div class="boxInfo">
                     <div class="colLeft">
                         <div class="infoName">
-                            <p class="avatar"><img src="assets/images/venture-capital/company-avatar.png" alt=""></p>
+                            <p class="avatar"><img src="<?php themeUrl() ?>/assets/images/venture-capital/company-avatar.png" alt=""></p>
                             <h3 class="name">弁理士 <span class="big">坂本 智弘</span><span class="small">全体・特許担当</span></h3>
                         </div>
                         <p class="linkInfo"><a href="javascript:void(0);">詳細</a></p>

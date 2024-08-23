@@ -4,8 +4,6 @@
  */
 get_header();
 ?>
-<?php display_mainTitle('お問い合わせ') ?>
-<!-- #main -->
 
 <div id="content">
     <div id="breadcrumbs">

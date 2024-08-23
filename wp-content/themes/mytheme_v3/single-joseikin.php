@@ -78,7 +78,7 @@ get_header(); ?>
                     <?php endif; ?>
                 </table>
                 <p class="dateUpdate">2020.07.31 UPDATE</p>
-                <p class="buttonAfterLogin"><a href="<?php home_url('/joseikin/') ?>">応募ページへ移動</a></p>
+                <p class="buttonAfterLogin"><a href="<?php echo home_url('/joseikin/') ?>">応募ページへ移動</a></p>
             </div>
             <?php endwhile; wp_reset_postdata(); ?>
         </div>

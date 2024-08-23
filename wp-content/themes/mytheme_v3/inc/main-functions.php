@@ -154,14 +154,16 @@ function display_mainTitle(){
         'joseikin' => '助成金情報',
         'seminar' => 'セミナー情報',
         'kigyou' => '企業の知財紹介',
+        'venture-capital' => 'ベンチャー・キャピタル',
+        'news' => '知財ニュース',
+        'chizai' => '知財の活用事例',
+        'contact' => 'お問い合わせ',
     ];
-    if( is_post_type_archive('joseikin') || is_singular('joseikin') ){
-        $title = $data_page['joseikin'];
-    } elseif( is_post_type_archive('seminar') || is_singular('seminar') ){
-        $title = $data_page['seminar'];
-    } elseif(is_post_type_archive('kigyou') || is_singular('kigyou') ){
-        $title = $data_page['kigyou'];
-    }
+    foreach($data_page as $item => $titleJP){
+        if( is_post_type_archive($item) || is_singular($item) ||is_page($item) ){
+            $title = $titleJP;
+        }
+    };
 ?>
 
     <div id="main" class="df">
