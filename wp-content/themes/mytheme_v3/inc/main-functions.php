@@ -171,7 +171,13 @@ function display_mainTitle(){
     </div>
 <?php };
 
-function box_count_post($found_posts = 0, $paged = 0, $number_paged = 0){ ?>
+function box_count_post($query = 'null'){ 
+    $found_posts = $query->found_posts;
+    $paged = isset($query->query_vars['paged']) ? $query->query_vars['paged'] : 1;
+    // var_dump($query);
+    // var_dump($found_posts, $paged);
+    $number_paged = 5;
+?>
     <p class="boxCount">
         <span class="quantity"><?php echo $found_posts ?></span>件中<span class="fPost"><?php echo ($paged - 1) * $number_paged + 1 ?></span>〜<span class="lPost"><?php echo min($found_posts, $paged * $number_paged) ?></span>件
     </p>
@@ -232,6 +238,13 @@ add_action('pre_get_posts', 'modify_search_query');
 
 function  get_first_area($cat = 'area'){
     $areas = get_the_terms(get_the_ID(), $cat);
-    return $areas ? array_shift($areas): '';
+    if ($areas && !is_wp_error($areas)) {
+        foreach ($areas as $area) {
+            if ($area->parent !== 0) { 
+                return $area;
+            }
+        }
+    }
+    return '';
 }
                            

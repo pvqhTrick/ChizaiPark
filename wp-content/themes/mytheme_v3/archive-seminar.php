@@ -32,7 +32,8 @@ $listSeminar = new WP_Query(array(
         <div class="wrapContent">
             <div class="contentLetf areaSeminar">
                 <?php if( $listSeminar ): ?>
-                <h2 class="infoTitle">セミナー情報</h2> <?php box_count_post($listSeminar->found_posts, $paged, $number_paged) ?>
+                <h2 class="infoTitle">セミナー情報</h2> 
+                <?php box_count_post( $listSeminar ) ?>
                 <ul class="listSemina">
                     <?php while( $listSeminar->have_posts() ): $listSeminar->the_post(); ?>
                     <li>
@@ -61,7 +62,7 @@ $listSeminar = new WP_Query(array(
                             <?php endif; ?>
                         </div>
                     </li> 
-                    <?php endwhile; ?>
+                    <?php endwhile; wp_reset_postdata(); ?>
                 </ul>
                 <!-- listSemina -->
                 <?php theme_pagination( $listSeminar ); ?>

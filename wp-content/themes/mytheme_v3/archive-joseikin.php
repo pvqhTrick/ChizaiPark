@@ -79,11 +79,16 @@ $listJoseikin = new WP_Query(array(
                             <p class="date">公募期間：<?php the_field('application_period') ?> </p>
                         </div>
                         <h3 class="infoTitleNews"><?php the_title() ?></h3>
-                        <p class="infoIntro">
-                            <?php the_excerpt() ?>
-                        </p>
+                        <div class="infoIntro"><?php the_excerpt() ?></div>
                         <div class="boxDetail">
-                            <p class="maxPrice"><span class="max">上限金額・助成額</span><span class="price"><?php the_field('max_price') ?></span></p>
+                            <p class="maxPrice"><span class="max">上限金額・助成額</span>
+                                <span class="price">    
+                                    <?php 
+                                    if(get_field('max_price'))  
+                                        the_field('max_price');
+                                    ?>
+                                </span>
+                            </p>
                             <p class="btnDetail"><a href="<?php the_permalink() ?>"><span>詳細はこちら</span></a></p>
                         </div>
                     </li>

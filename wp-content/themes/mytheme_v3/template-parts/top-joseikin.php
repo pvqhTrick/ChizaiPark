@@ -26,8 +26,7 @@ if($listJoseikin->have_posts()):?>
                 </p>
                 <p class="text"><a href="<?php the_permalink() ?>" class="hover"><?php the_title(); ?></a></p>
             </li>
-        <?php endwhile;
-        wp_reset_postdata(); ?>
+        <?php endwhile; wp_reset_postdata(); ?>
     </ul>
     <p class="btnMore"><a href="<?php echo home_url('joseikin') ?>"><span>助成金情報へ</span></a></p>
 </div>

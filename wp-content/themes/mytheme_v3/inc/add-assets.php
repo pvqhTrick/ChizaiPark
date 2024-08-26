@@ -12,7 +12,7 @@ function add_theme_assets_for_head() {
     if ( is_home() || is_front_page() ) {
         wp_enqueue_style('index-style', get_template_directory_uri() . '/assets/css/index.css', array('main-common-css'));
     } elseif ( is_single() ) {
-        if (is_singular('joseikin') || is_singular('chizai')) {
+        if (is_singular('joseikin')) {
             wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/joseikin-detail.css', array('main-common-css'));
         } elseif (is_singular('kigyou')) {
             wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/kigyou-detail.css', array('main-common-css'));
@@ -21,7 +21,9 @@ function add_theme_assets_for_head() {
         } elseif (is_singular('news')) {
             wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/joseikin-detail.css', array('main-common-css'));
         } elseif (is_singular('venture-capital')) {
-            wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/venture-capital.css', array('main-common-css'));
+            wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/venture-capital-detail.css', array('main-common-css'));
+        } elseif (is_singular('chizai')) {
+            wp_enqueue_style('single-style', get_template_directory_uri() . '/assets/css/chizai-detail.css', array('main-common-css'));
         } 
     } elseif ( is_post_type_archive('joseikin') ) {
         wp_enqueue_style('list-style', get_template_directory_uri() . '/assets/css/joseikin.css');

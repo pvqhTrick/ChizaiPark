@@ -7,7 +7,15 @@ get_header();
 $listChizai = new WP_Query(array(
     'post_type' => 'chizai',
     'posts_per_page' => 5,
+    'paged' => get_query_paged(),
 ));
+
+// $categories = get_terms(array(
+//     'taxonomy'   => 'categories',
+//     'hide_empty' => false,
+//     'parent'     => 0,
+// ));
+$categories = get_the_terms(get_the_ID(), 'category');
 
 ?>
 
@@ -33,10 +41,9 @@ $listChizai = new WP_Query(array(
                             <div class="rowSearch">
                                 <select id="cate">
                                     <option value="">カテゴリー</option>
-                                    <option value="">ベンチャー</option>
-                                    <option value="">特許</option>
-                                    <option value="">商標</option>
-                                    <option value="">意匠</option>
+                                    <?php foreach($categories as $cat): ?>
+                                        <option value="<?php echo $cat->slug ?>"><?php echo $cat->name ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                             <div class="boxaction">
@@ -47,137 +54,29 @@ $listChizai = new WP_Query(array(
                     </form>
                 </div>
                 <!-- boxNarrow -->
-                <p class="numPost">200件中1〜10件</p>
+                <?php box_count_post( $listChizai ); ?>
+                <?php if( $listChizai->have_posts() ): ?>
                 <ul class="listPost">
+                    <?php while( $listChizai->have_posts() ): $listChizai->the_post(); ?>
                     <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">ベンチャー</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
+                        <p class="date"><?php the_time('Y年m月d日') ?></p>
+                        <p class="cate">
+                            <?php 
+                            if ($categories && !is_wp_error($categories)) {
+                                $first_category = reset($categories);
+                                echo '<a href="' . esc_url(get_term_link($first_category)) . '">' . esc_html($first_category->name) . '</a>';
+                            }
+                            ?>
+                        </p>
+                        <div class="text"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?></a></div>
                     </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">特許</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">商標</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">特許</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">商標</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">ベンチャー</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">特許</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">商標</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">特許</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
-                    <li>
-                        <p class="date">2020年07月13日</p>
-                        <p class="cate">商標</p>
-                        <p class="text"><a href="#"
-                                class="hover">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯</a></p>
-                    </li>
+                    <?php endwhile; ?>
                 </ul>
+                <?php endif; ?>
                 <!-- listPost -->
-                <div class="pagingNav">
-                    <ul class="navList">
-                        <li class="first"><a class="hover" href="#">
-                                <<< /a>
-                        </li>
-                        <li class="prev"><a class="hover" href="#">
-                                << /a>
-                        </li>
-                        <li class="active"><a>1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li class="next"><a class="hover" href="#">></a></li>
-                        <li class="last"><a class="hover" href="#">>></a></li>
-                    </ul>
-                </div>
-                <!-- pagingNav -->
+                <?php theme_pagination($listChizai); ?>
             </div>
-            <div class="sideBar">
-                <div class="cateBox">
-                    <h2 class="cateTitle">カテゴリー</h2>
-                    <ul class="listcate">
-                        <li><a href="#"><span>ベンチャー</span></a></li>
-                        <li><a href="#"><span>特許</span></a></li>
-                        <li><a href="#"><span>商標</span></a></li>
-                        <li><a href="#"><span>意匠</span></a></li>
-                    </ul>
-
-                    <div class="boxCate">
-                        <h3 class="boxcateTitle">おすすめ記事</h3>
-                        <ul class="listCatenews">
-                            <li>
-                                <a href="#" class="hover">
-                                    <p class="date">2020年07月13日</p>
-                                    <p class="text">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯…</p>
-                                    <p class="co">株式会社◯◯◯◯◯◯</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover">
-                                    <p class="date">2020年07月13日</p>
-                                    <p class="text">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯…</p>
-                                    <p class="co">株式会社◯◯◯◯◯◯</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover">
-                                    <p class="date">2020年07月13日</p>
-                                    <p class="text">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯…</p>
-                                    <p class="co">株式会社◯◯◯◯◯◯</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover">
-                                    <p class="date">2020年07月13日</p>
-                                    <p class="text">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯…</p>
-                                    <p class="co">株式会社◯◯◯◯◯◯</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-
-                </div>
-            </div>
+            <?php get_sidebar('chizai'); ?>
         </div>
     </div>
 </div>

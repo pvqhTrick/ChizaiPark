@@ -4,14 +4,13 @@
  */
 get_header();
 
-$paged = get_query_paged();
-$number_paged = 5;
+
 $listKigyou = new WP_Query(array(
     'post_type' => 'kigyou',
-    'posts_per_page' => $number_paged,
-    'paged' => $paged,
+    'posts_per_page' => 5,
+    'paged' => get_query_paged(),
 ));
-$found_posts = $listKigyou->found_posts;
+
 ?>
 
 <!-- #main -->
@@ -33,7 +32,7 @@ $found_posts = $listKigyou->found_posts;
                 <?php if( $listKigyou->have_posts() ):?>
                 <div class="boxName">
                     <h3 class="boxTitle">新着知財ニュース</h3>
-                    <?php box_count_post($found_posts, $paged, $number_paged); ?>
+                    <?php box_count_post( $listKigyou ); ?>
                 </div>
                 <ul class="boxList">
                     <?php while( $listKigyou->have_posts() ): $listKigyou->the_post(); ?>

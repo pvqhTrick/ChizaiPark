@@ -23,8 +23,7 @@ $listVentureCapital = new WP_Query(array(
             <div class="boxPost">
                 <div class="boxName">
                     <h3 class="boxTitle">ベンチャー・キャピタル一覧</h3>
-                    <p class="boxCount"><span class="quantity">200</span>件中<span class="fPost">1</span>〜<span
-                            class="lPost">10</span>件</p>
+                    <?php box_count_post( $listVentureCapital ); ?>
                 </div>
                 <?php if( $listVentureCapital->have_posts() ): ?>
                 <ul class="boxList">
@@ -33,9 +32,9 @@ $listVentureCapital = new WP_Query(array(
                         <p class="nameCompany">
                             <a href=""><?php the_title() ?></a>
                         </p>
-                        <p class="linkPost">
+                        <div class="linkPost">
                             <a href="<?php the_permalink() ?>"><?php the_excerpt() ?></a>
-                        </p>
+                        </div>
                     </li>
                     <?php endwhile; wp_reset_postdata();?>
                 </ul>

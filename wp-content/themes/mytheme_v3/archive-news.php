@@ -4,6 +4,7 @@ get_header();
 $listNews = new WP_Query(array(
     'post_type' => 'news',
     'posts_per_page' => 5,
+    'paged' => get_query_paged()
 ));
 ?>
 
@@ -23,19 +24,18 @@ $listNews = new WP_Query(array(
             <div class="boxPost">
                 <div class="boxName">
                     <h3 class="boxTitle">新着知財ニュース</h3>
-                    <p class="boxCount"><span class="quantity">200</span>件中<span class="fPost">1</span>〜<span
-                            class="lPost">10</span>件</p>
+                    
                 </div>
+                <?php box_count_post( $listNews ); ?>
                 <?php if( $listNews->have_posts() ): ?>
                 <ul class="boxList">
                     <?php while( $listNews->have_posts() ): $listNews->the_post(); ?>
                     <li>
-                        <p class="datePost"><a href="javascript:void(0);">2020年07月13日</a></p>
-                        <p class="linkPost"><a
-                                href="javascript:void(0);">ノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求めノーベル賞・本庶氏が小野薬品提訴を表明　オプジーボ特許使用料226億円求め</a>
-                        </p>
+                        <p class="datePost"><a href="javascript:void(0);"><?php the_time('Y年m月d日') ?></a></p>
+                        <div class="linkPost"><a href="<?php the_permalink() ?>"></a><?php the_excerpt() ?></a>
+                        </div>
                     </li>
-                   <?php endwhile; ?>
+                   <?php endwhile; wp_reset_postdata(); ?>
                 </ul>
                 <?php endif; ?>
 
