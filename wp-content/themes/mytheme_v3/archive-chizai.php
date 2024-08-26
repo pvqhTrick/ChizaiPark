@@ -10,12 +10,7 @@ $listChizai = new WP_Query(array(
     'paged' => get_query_paged(),
 ));
 
-// $categories = get_terms(array(
-//     'taxonomy'   => 'categories',
-//     'hide_empty' => false,
-//     'parent'     => 0,
-// ));
-$categories = get_the_terms(get_the_ID(), 'category');
+$categories_list = get_terms(array(), 'categories');
 
 ?>
 
@@ -41,7 +36,7 @@ $categories = get_the_terms(get_the_ID(), 'category');
                             <div class="rowSearch">
                                 <select id="cate">
                                     <option value="">カテゴリー</option>
-                                    <?php foreach($categories as $cat): ?>
+                                    <?php foreach($categories_list as $cat): ?>
                                         <option value="<?php echo $cat->slug ?>"><?php echo $cat->name ?></option>
                                     <?php endforeach ?>
                                 </select>
@@ -57,18 +52,20 @@ $categories = get_the_terms(get_the_ID(), 'category');
                 <?php box_count_post( $listChizai ); ?>
                 <?php if( $listChizai->have_posts() ): ?>
                 <ul class="listPost">
-                    <?php while( $listChizai->have_posts() ): $listChizai->the_post(); ?>
+                    <?php while( $listChizai->have_posts() ): $listChizai->the_post(); 
+                    $categories = get_the_terms(get_the_ID(), 'categories');
+                    // var_dump($categories);
+                    ?>
+                    
                     <li>
                         <p class="date"><?php the_time('Y年m月d日') ?></p>
                         <p class="cate">
                             <?php 
-                            if ($categories && !is_wp_error($categories)) {
-                                $first_category = reset($categories);
-                                echo '<a href="' . esc_url(get_term_link($first_category)) . '">' . esc_html($first_category->name) . '</a>';
-                            }
-                            ?>
-                        </p>
-                        <div class="text"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?></a></div>
+                            if ($categories) : ?>
+                                <?php echo $categories[0]->name ?>
+                            <?php endif; ?>
+                        <!-- </p> -->
+                      <div class="text"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?></a></div>
                     </li>
                     <?php endwhile; ?>
                 </ul>

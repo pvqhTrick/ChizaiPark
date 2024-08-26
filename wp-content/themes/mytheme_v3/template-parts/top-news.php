@@ -11,10 +11,9 @@
             $listKigyou->the_post(); ?>
             <li>
                 <p class="date"><?php the_time('Y年m月d日') ?></p>
-                <p class="linkPost"><a href="<?php the_permalink() ?>" class="hover"><?php the_content() ?></a></p>
+                <div class="linkPost"><a href="<?php the_permalink() ?>" class="hover"><?php the_content() ?></a></div>
             </li>
-        <?php endwhile;
-        wp_reset_postdata(); ?>
+        <?php endwhile; wp_reset_postdata(); ?>
     </ul>
     <p class="btnMore"><a href="<?php echo home_url('/kigyou/') ?>"><span>知財ニュース</span></a></p>
 </div>

@@ -247,4 +247,98 @@ function  get_first_area($cat = 'area'){
     }
     return '';
 }
-                           
+
+
+//<script>
+// AJAX JS DEMO
+add_action( 'wp_footer', 'ajax_javascript' );
+function ajax_javascript() { ?>
+    <script type="text/javascript" >
+        (function($){
+        $(document).ready(function(){
+            $('#region').change(function(){
+                var region_id = $(this).val();
+                var $rowloading = $('.loading');
+                if( region_id ) {
+                    $rowloading.addClass('loading');
+                    $.ajax({
+                        type : "post",
+                        dataType : "json",
+                        url : '<?php echo admin_url('admin-ajax.php');?>',
+                        data : {
+                            action : "get_prefecture_by_region",
+                            region_id : region_id,
+                        },
+                        context: this,
+                        beforeSend: function(){
+                            $('#prefecture').prop('disabled', true);
+                        },
+                        success: function(response) {
+                            if(response.success) {
+                                var options = '<option value="">都道府県で選択</option>';
+                                $.each(response.data, function(index, prefecture) {
+                                    options += '<option value="' + prefecture.id + '">' + prefecture.name + '</option>';
+                                });
+                                $('#prefecture').html(options).prop('disabled', false);
+                            } else {
+                                $('#prefecture').html('<option value="">No data available</option>').prop('disabled', true);
+                            }
+                            $rowloading.removeClass('loading');
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ) {
+                            console.log( 'The following error occurred: ' + textStatus, errorThrown );
+                            $rowloading.removeClass('loading');
+                        }
+                    });
+                }
+            });
+        });
+        })(jQuery)
+    </script> <?php
+}
+
+
+// AJAX PHP SERVER
+add_action( 'wp_ajax_get_prefecture_by_region', 'get_prefecture_by_region' );
+add_action( 'wp_ajax_nopriv_get_prefecture_by_region', 'get_prefecture_by_region' );
+
+function get_prefecture_by_region() {
+    $region_id = isset($_POST['region_id']) ? intval($_POST['region_id']) : 0;
+
+    if($region_id) {
+        $prefectures =get_prefectures_by_region($region_id);
+
+        if($prefectures) {
+            $result = array();
+            foreach($prefectures as $prefecture) {
+                $result[] = array('id' => $prefecture->term_id, 'name' => $prefecture->name);
+            }
+            wp_send_json_success($result);
+        } else {
+            wp_send_json_error('都道府県が見つかりませんでした');
+        }
+    } else {
+        wp_send_json_error('無効なリージョン ID');
+    }
+
+    die();
+}
+
+function get_prefectures_by_region($term_id) {
+    // Lấy term cha dựa trên slug
+    $parent_term = get_term_by('term_id', $term_id, 'area'); 
+
+    if ($parent_term) {
+        $child_terms = get_terms(array(
+            'taxonomy' => 'area', 
+            'child_of' => $parent_term->term_id,
+            'hide_empty' => false,
+        ));
+
+        if (!empty($child_terms)) {
+            return $child_terms;
+        }
+    }
+
+    return false;
+}

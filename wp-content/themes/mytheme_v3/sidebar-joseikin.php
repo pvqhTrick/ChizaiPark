@@ -21,8 +21,8 @@ if($areas): ?>
             ?>
             <?php if(!empty( $child_area )): ?>
             <ul class="listregion">
-                <?php foreach ( $child_area as $child ): ?>
-                    <li><a href="<?php echo get_term_link( $child ) ?>"><span><?php echo $child->name ?></span></a></li>
+                <?php foreach ( $child_area as $child ): ?> 
+                    <li><a href="<?php echo home_url('joseikin?area=').$child->slug ?>"><span><?php echo $child->name ?></span></a></li>
                 <?php endforeach; ?>
             </ul>
             <?php endif; ?>

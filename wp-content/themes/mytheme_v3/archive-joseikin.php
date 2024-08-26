@@ -10,12 +10,25 @@ $areas = get_terms( array(
     'parent'     => 0,
 ));
 
-
-$listJoseikin = new WP_Query(array(
+$args = array(
     'post_type' => 'joseikin',
     'posts_per_page' => '5',
     'paged' => get_query_paged(),
-));
+);
+$area = isset($_GET['area']) ? $_GET['area'] : '';
+if (!empty($area)) {
+    $args['tax_query'] = array(
+        'relation' => 'OR',
+        array(
+            'taxonomy' => 'area',
+            'field' => 'slug',
+            'terms' => $area,
+        ),
+    );
+}
+$listJoseikin = new WP_Query($args);
+
+// var_dump($listJoseikin);
 
 ?>
 
@@ -54,7 +67,7 @@ $listJoseikin = new WP_Query(array(
                             </div>
                         </div>
                         <div class="boxaction">
-                            <div class="clear"><input type="reset" name="reset" value="クリア" class="noto"></div>
+                            <div class="clear"><a href= "<?php echo home_url('/joseikin/') ?>" class="noto">クリア<</a></div>
                             <div class="find"><input type="submit" name="find" value="検索する" class="noto"></div>
                         </div>
                     </form>
@@ -107,24 +120,5 @@ $listJoseikin = new WP_Query(array(
     </div>
 </div>
 <!-- #content -->
-<script>
-    jQuery(document).ready(function($) {
-        $('#searchArea').on('submit', function(e) {
-            e.preventDefault();
-            let area = $(this).serialize();
 
-            $.ajax({
-                url: "",
-                type: 'GET',
-                data: {
-                    action: 'get_prefectures_by_area',
-                    area: area
-                },
-                success: function(response) {
-                    $('#search-results').html(response);
-                },
-            });
-        });
-    });
-</script>
 <?php get_footer() ?>
