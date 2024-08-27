@@ -55,45 +55,12 @@ add_filter( 'wp_title', 'theme_wp_title', 10, 2 );
 
 
 // THEME EXCERPT MORE
-// if ( ! function_exists( 'theme_excerpt_more' ) && ! is_admin() ) :
-// function theme_excerpt_more( $more ) {
-// 	return '&hellip;';
-// }
-// add_filter( 'excerpt_more', 'theme_excerpt_more' );
-
-// EXCERPT LENGTH
-add_filter( 'excerpt_length', 'theme_excerpt_length', 100 );
-function theme_excerpt_length( $length ) {
-	global $post;
-	if($post->post_type === 'joseikin'){
-		return 10;
-	} elseif ($post->post_type === 'venture-capital'){
-		return 30;
-	} elseif ($post->post_type === 'news'){
-		return 30;
-	} elseif ($post->post_type === 'kigyou'){
-		return 30;
-	}
-	return $length;
-}
-
-
-add_filter( 'excerpt_more', 'theme_excerpt_more' );	
+if ( ! function_exists( 'theme_excerpt_more' ) && ! is_admin() ) :
 function theme_excerpt_more( $more ) {
-    global $post;
-	if($post->post_type == 'joseikin'){
-		return '...';
-	} elseif ($post->post_type === 'venture-capital'){
-		return '...';
-	} elseif ($post->post_type === 'news'){
-		return '...';
-	} elseif ($post->post_type === 'kigyou'){
-		return '...';
-	}
-	return $more;
+	return '&hellip;';
 }
-
-// endif;
+add_filter( 'excerpt_more', 'theme_excerpt_more' );
+endif;
 
 
 

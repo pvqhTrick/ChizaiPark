@@ -11,6 +11,7 @@ $areas = get_terms( array(
 ));
 
 $args = array(
+    'post_status' => 'publish',
     'post_type' => 'joseikin',
     'posts_per_page' => '5',
     'paged' => get_query_paged(),
@@ -69,7 +70,10 @@ $listJoseikin = new WP_Query($args);
                                 <select id="region" name="area">
                                 <option value="">都道府県で選択</option>
                                 <?php
-                                foreach ( $areas as $area ): ?>
+                                foreach ( $areas as $area ):
+                                    $current_area = isset( $_GET['area'] ) ? $_GET['area'] : 0;
+                                    // if( $current == $area->name ) 
+                                ?>
                                     <option value="<?php echo $area->slug ?>"><?php echo $area->name ?></option>
                                 <?php endforeach; ?>
                                 </select>
@@ -83,7 +87,7 @@ $listJoseikin = new WP_Query($args);
                         </div>
                         <div class="boxaction">
                             <div class="clear"><a href= "<?php echo home_url('/joseikin/') ?>" class="noto">クリア<</a></div>
-                            <div class="find"><input type="submit" name="find" value="検索する" class="noto"></div>
+                            <div class="find"><input type="submit" value="検索する" class="noto"></div>
                         </div>
                     </form>
                 </div>
@@ -110,12 +114,11 @@ $listJoseikin = new WP_Query($args);
                         <div class="infoIntro"><?php the_excerpt() ?></div>
                         <div class="boxDetail">
                             <p class="maxPrice"><span class="max">上限金額・助成額</span>
-                                <span class="price">    
-                                    <?php 
-                                    if(get_field('max_price'))  
-                                        the_field('max_price');
-                                    ?>
-                                </span>
+                                <?php if(get_field('max_price'))  : ?>
+                                    <span class="price">    
+                                            <?php the_field('max_price'); ?>
+                                    </span>
+                                <?php endif; ?>
                             </p>
                             <p class="btnDetail"><a href="<?php the_permalink() ?>"><span>詳細はこちら</span></a></p>
                         </div>

@@ -257,9 +257,7 @@ function ajax_javascript() { ?>
         $(document).ready(function(){
             $('#region').change(function(){
                 var region_slug = $(this).val();
-                var $rowloading = $('.loading');
                 if( region_slug ) {
-                    $rowloading.addClass('loading');
                     $.ajax({
                         type : "post",
                         dataType : "json",
@@ -274,19 +272,17 @@ function ajax_javascript() { ?>
                         },
                         success: function(response) {
                             if(response.success) {
-                                var options = '<option value="0">都道府県で選択</option>';
+                                var options = '<option value="">都道府県で選択</option>';
                                 $.each(response.data, function(index, prefecture) {
                                     options += '<option value="' + prefecture.slug + '">' + prefecture.name + '</option>';
                                 });
                                 $('#prefecture').html(options).prop('disabled', false);
                             } else {
-                                $('#prefecture').html('<option value="0">利用可能なデータがありません</option>').prop('disabled', true);
+                                $('#prefecture').html('<option value="">利用可能なデータがありません</option>').prop('disabled', true);
                             }
-                            $rowloading.removeClass('loading');
                         }, 
                         error: function( jqXHR, textStatus, errorThrown ) {
                             console.log( 'The following error occured: ' + textStatus, errorThrown );
-                            $rowloading.removeClass('loading');
                         }
                     });
                 }
@@ -338,4 +334,21 @@ function get_prefectures_by_region($term_slug) {
     }
 
     return false;
+}
+
+
+// EXCERPT LENGTH
+add_filter( 'excerpt_length', 'chizai_excerpt_length', 100 );
+function chizai_excerpt_length( $length ) {
+	global $post;
+	if($post->post_type === 'joseikin'){
+		return 5;
+	} elseif ($post->post_type === 'venture-capital'){
+		return 30;
+	} elseif ($post->post_type === 'news'){
+		return 30;
+	} elseif ($post->post_type === 'kigyou'){
+		return 30;
+	}
+	return $length;
 }

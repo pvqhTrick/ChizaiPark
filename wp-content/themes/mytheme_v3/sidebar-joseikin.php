@@ -11,7 +11,7 @@ if($areas): ?>
         <h2 class="regionTitle">地域別</h2>
         <?php foreach($areas as $area): ?>
         <div class="regionBox">
-            <h3 class="listregionTitle first"><a href="<?php echo get_term_link( $area ) ?>"><?php echo $area->name ?></a></h3>
+            <h3 class="listregionTitle first"><a href="<?php echo home_url('joseikin?area=').$area->slug ?>"><?php echo $area->name ?></a></h3>
             <?php 
             $child_area = get_terms( array(
                 'taxonomy'   => 'area',
@@ -22,7 +22,7 @@ if($areas): ?>
             <?php if(!empty( $child_area )): ?>
             <ul class="listregion">
                 <?php foreach ( $child_area as $child ): ?> 
-                    <li><a href="<?php echo home_url('joseikin?area=').$child->slug ?>"><span><?php echo $child->name ?></span></a></li>
+                    <li><a href="<?php echo home_url().'/joseikin?area='.$area->slug.'&prefecture='.$child->slug ?>"><span><?php echo $child->name ?></span></a></li>
                 <?php endforeach; ?>
             </ul>
             <?php endif; ?>

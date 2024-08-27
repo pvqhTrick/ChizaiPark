@@ -4,26 +4,35 @@
  */
 
 $listChizai = new WP_Query(array(
+	'post_status' => 'publish',
 	'post_type' => 'chizai',
 	'posts_per_page' => 3,
+	'meta_query'=> array(
+		array(
+			'key'     => 'pickup',
+            'value'   => 'true', 
+            'compare' => '=',
+            'type'    => 'CHAR',
+		)
+	)
 ));
 $listVentureCapital = new WP_Query(array(
+	'post_status' => 'publish',
 	'post_type' => 'venture-capital',
 	'posts_per_page' => 3,
 ));
 $listKigyou = new WP_Query(array(
+	'post_status' => 'publish',
 	'post_type' => 'kigyou',
 	'posts_per_page' => 3,
 ));
 $listTopViewJoseikin = new WP_Query(array(
+	'post_status' => 'publish',
 	'post_type' => 'joseikin',
 	'posts_per_page' => 5,
-	'meta_query' => array(
-		'key' => 'field_name',
-	),
-	'orderby' => array(
-        'view' => 'DESC',
-    ),
+	'meta_key' => 'view', 
+    'orderby' => 'meta_value_num', 
+    'order' => 'DESC',
 ));
 ?>
 <div class="sideBar">
@@ -57,9 +66,16 @@ $listTopViewJoseikin = new WP_Query(array(
 		<ul class="listIntell">
 			<?php while( $listChizai->have_posts() ): $listChizai->the_post(); ?>
 			<li>
-				<p class="date">2020年07月13日</p>
-				<p class="cate"><a href="#">ベンチャー</a></p>
-				<p class="text"><a href="#" class="hover">外国特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</a></p>
+				<p class="date"><?php the_time('Y年m月d日') ?></p>
+				<?php  $categories = get_the_terms(get_the_ID(), 'categories'); ?>
+				<p class="cate">
+					<a href="#"> 
+					<?php if ($categories) : ?>
+						<?php echo $categories[0]->name ?>
+					<?php endif; ?>
+					</a>
+				</p>
+				<p class="text"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?>/</a></p>
 			</li>
 			<?php endwhile; wp_reset_postdata(); ?>
 		</ul>
@@ -88,8 +104,8 @@ $listTopViewJoseikin = new WP_Query(array(
 			<?php while( $listKigyou->have_posts() ): $listKigyou->the_post(); ?>
 			<li>
 				<a href="#" class="hover">
-					<p class="co">株式会社〇〇〇〇〇〇</p>
-					<p class="exLink">国内特許出願による〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</p>
+					<p class="co"><?php the_title() ?></p>
+					<p class="exLink"><?php the_excerpt() ?></p>
 				</a>
 			</li>
 			<?php endwhile; ?>
@@ -106,6 +122,28 @@ $listTopViewJoseikin = new WP_Query(array(
 	?> 
 	<div class="areaRanking">
 		<h2 class="rankingTitle">アクセスランキング</h2>
+		<ul class="listRank">
+			<?php while( $listTopViewJoseikin->have_posts() ): $listTopViewJoseikin->the_post(); ?>
+			<li>
+				<p class="numRank"><span class="num <?php echo $rankName[$rank-1] ?>"><?php echo $rank; $rank++ ?></span>位</p>
+				<p class="rankDetail"><a href="<?php the_permalink() ?>" class="hover"><?php the_title() ?></a></p>
+			</li>
+			<?php endwhile; wp_reset_postdata(); ?>
+		</ul>
+	</div>
+	<!-- areaTop5Joseikin -->
+	<?php endif; ?>
+
+
+
+
+	<?php 
+	if( $listTopViewJoseikin->have_posts() ): 
+	$rank = 1;
+	$rankName=['numone', 'numtwo', 'numthree','',''];
+	?> 
+	<div class="areaRanking">
+		<h2 class="rankingTitle">Custom ranking</h2>
 		<ul class="listRank">
 			<?php while( $listTopViewJoseikin->have_posts() ): $listTopViewJoseikin->the_post(); ?>
 			<li>

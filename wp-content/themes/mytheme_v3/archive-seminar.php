@@ -4,13 +4,11 @@
  */
 get_header();
 
-
-$paged = get_query_paged();
-$number_paged = 3;
 $listSeminar = new WP_Query(array(
+    'post_status' => 'publish',
     'post_type' => 'seminar',
-    'posts_per_page' => $number_paged,
-    'paged' => $paged,
+    'posts_per_page' => 5,
+    'paged' => get_query_paged(),
 ));
 
 ?>
@@ -37,7 +35,7 @@ $listSeminar = new WP_Query(array(
                 <ul class="listSemina">
                     <?php while( $listSeminar->have_posts() ): $listSeminar->the_post(); ?>
                     <li>
-                        <p class="date"><?php the_date('Y年m月d日'); ?><span class="th">（木）</span></p>
+                        <p class="date"><?php the_time('Y年m月d日'); ?><span class="th">（木）</span></p>
                         
                         <?php $cat = get_first_area(); 
                         if($cat): ?>

@@ -1,5 +1,5 @@
 <?php $listKigyou = new WP_Query(array(
-    'post_type' => 'kigyou',
+    'post_type' => 'news',
     'posts_per_page' => '5'
 ));
 ?>
@@ -15,5 +15,5 @@
             </li>
         <?php endwhile; wp_reset_postdata(); ?>
     </ul>
-    <p class="btnMore"><a href="<?php echo home_url('/kigyou/') ?>"><span>知財ニュース</span></a></p>
+    <p class="btnMore"><a href="<?php echo home_url('/news/') ?>"><span>知財ニュース</span></a></p>
 </div>

@@ -21,15 +21,11 @@ get_header();
             <div class="wrapContent">
                 <?php while( have_posts() ): the_post(); ?>
                 <h2 class="infoTitle">オンラインセミナー：契約の基礎と知的財産権リスクに関わる取決めに<br>ついて </h2>
-                <ul class="social">
-                    <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/seminar/icon-fb.svg" alt=""></a></li>
-                    <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/seminar/icon-tw.svg" alt=""></a></li>
-                    <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/seminar/icon-line.svg" alt=""></a></li>
-                </ul>
+                <?php get_template_part('template-parts/single-box-network') ?>
                 <div class="contentSamiraDetail">
                     <?php if( get_field('purpose') ):?>
                         <h4>目的</h4>
-                        <div><?php the_field('purpose') ?></di>
+                        <div><?php the_field('purpose') ?></div>
                     <?php endif; ?>
                     
                     <?php if( get_field('target_audience') ):?>

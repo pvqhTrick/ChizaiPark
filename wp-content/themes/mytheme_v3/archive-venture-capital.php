@@ -2,6 +2,7 @@
 get_header();
 
 $listVentureCapital = new WP_Query(array(
+    'post_status' => 'publish',
     'post_type' => 'venture-capital',
     'posts_per_page' => 5,
     'paged' => get_query_paged(),

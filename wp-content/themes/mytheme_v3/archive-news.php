@@ -2,6 +2,7 @@
 get_header();
 
 $listNews = new WP_Query(array(
+    'post_status' => 'publish',
     'post_type' => 'news',
     'posts_per_page' => 5,
     'paged' => get_query_paged()
@@ -32,8 +33,7 @@ $listNews = new WP_Query(array(
                     <?php while( $listNews->have_posts() ): $listNews->the_post(); ?>
                     <li>
                         <p class="datePost"><a href="javascript:void(0);"><?php the_time('Y年m月d日') ?></a></p>
-                        <div class="linkPost"><a href="<?php the_permalink() ?>"></a><?php the_excerpt() ?></a>
-                        </div>
+                        <div class="linkPost"><a href="<?php the_permalink() ?>"><?php the_excerpt() ?></a></div>
                     </li>
                    <?php endwhile; wp_reset_postdata(); ?>
                 </ul>
