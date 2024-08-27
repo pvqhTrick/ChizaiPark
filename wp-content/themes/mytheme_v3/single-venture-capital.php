@@ -16,87 +16,10 @@
             <div class="blockDetail">
                 <h2 class="detailTitle">特許を使った◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br class="pc">◯◯◯◯◯◯◯◯◯◯</h2>
                 <div class="boxContent">
-                    <div class="boxName">
-                        <h3 class="nameCompany">株式会社〇〇〇〇〇〇</h3>
-                        <ul class="social">
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-fb.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-tw.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img
-                                        src="assets/images/venture-capital/icon-line.svg" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <!-- BOXNAME -->
-
-                    <div class="boxCompany">
-                        <h4 class="companyTitle">会社情報</h4>
-                        <div class="companyWrap">
-                            <p class="companyPhoto"><img src="assets/images/venture-capital/company-photo.jpg"
-                                    alt="会社情報"></p>
-                            <div class="companyContent">
-                                <p class="companyText">
-                                    ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                                </p>
-                                <p class="companyLink"><a href="javascript:void(0);">コーポレートサイトへ</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- BOXCOMPANY -->
-
-                    <div class="boxFieldContent">
-                        <div class="itemField">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <p class="fieldText">
-                                ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                            </p>
-                            <p class="fieldPhoto"><img src="assets/images/venture-capital/photo-image.jpg" alt=""></p>
-                        </div>
-
-                        <div class="itemField itemField2">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <p class="fieldText">
-                                ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br>◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                            </p>
-                        </div>
-
-                        <div class="itemField rPhoto">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <div class="fieldWrap">
-                                <p class="fieldText fieldText2">
-                                    ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br>◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                                </p>
-                                <p class="fieldPhoto"><img src="assets/images/venture-capital/photo-image-02.jpg"
-                                        alt=""></p>
-                            </div>
-                        </div>
-
-                        <div class="itemField lPhoto">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <div class="fieldWrap">
-                                <p class="fieldText fieldText2">
-                                    ◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯<br>◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯
-                                </p>
-                                <p class="fieldPhoto"><img src="assets/images/venture-capital/photo-image-02.jpg"
-                                        alt=""></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- BOXFIELDCONTENT -->
-
-                    <div class="boxTable">
-                        <h4 class="tableTitle">ポイント</h4>
-                        <p class="tableSub">
-                            ポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイント
-                        </p>
-                        <ul class="tableList">
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                        </ul>
-                    </div>
-                    <!-- BOXTABLE -->
+                    <?php get_template_part('template-parts/single-box-network'); ?>
+                    <?php get_template_part('template-parts/single-box-company'); ?>
+                    <?php get_template_part('template-parts/single-box-field-content'); ?>
+                    <?php get_template_part('template-parts/single-box-table'); ?>
                 </div>
 
                 <div class="boxInfo">

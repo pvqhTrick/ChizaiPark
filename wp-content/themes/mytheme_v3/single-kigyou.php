@@ -24,80 +24,10 @@ get_header();
             <div class="blockDetail">
                 <h2 class="detailTitle"><?php the_title() ?></h2>
                 <div class="boxContent">
-                    <div class="boxName">
-                        <h3 class="nameCompany"><?php the_content(); ?></h3>
-                        <ul class="social">
-                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-fb.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-tw.svg" alt=""></a></li>
-                            <li><a href="javascript:void(0);" class="hover"><img src="<?php themeUrl() ?>/assets/images/venture-capital/icon-line.svg" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <!-- BOXNAME -->
-
-                    <div class="boxCompany">
-                        <h4 class="companyTitle">会社情報</h4>
-                        <div class="companyWrap">
-                            <p class="companyPhoto"><img src="<?php the_field('company_img') ?>" alt="会社情報"></p>
-                            <div class="companyContent">
-                                <p class="companyText"><?php the_field('company_info') ?></p>
-                                <p class="companyLink"><a href="javascript:void(0);">コーポレートサイトへ</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- BOXCOMPANY -->
-
-                    <div class="boxFieldContent">
-                        <?php if( get_field('patent_application_history') && get_field('patent_application_history_img') ): ?>
-                        <div class="itemField">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <p class="fieldText"><?php the_field('patent_application_history'); ?></p>
-                            <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img'); ?>" alt=""></p>
-                        </div>
-                        <?php endif; ?>
-
-                        <?php if( get_field('patent_application_history_2') && get_field('patent_application_history_img_2') ): ?>
-                        <div class="itemField itemField2">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <p class="fieldText"><?php the_field('patent_application_history_2'); ?></p>
-                            <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img_2'); ?>" alt=""></p>
-                        </div>
-                        <?php endif; ?>
-
-                        <?php if( get_field('patent_application_history_3') && get_field('patent_application_history_img_3') ): ?>
-                        <div class="itemField rPhoto">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <div class="fieldWrap">
-                                <p class="fieldText fieldText2"><?php the_field('patent_application_history_3'); ?></p>
-                                <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img_2'); ?>" alt=""></p>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-
-                        <?php if( get_field('patent_application_history_4') && get_field('patent_application_history_img_4') ): ?>
-                        <div class="itemField lPhoto">
-                            <h4 class="fieldTitle">特許申請の経緯</h4>
-                            <div class="fieldWrap">
-                                <p class="fieldText fieldText2"><?php the_field('patent_application_history_4'); ?></p>
-                                <p class="fieldPhoto"><img src="<?php the_field('patent_application_history_img_4'); ?>" alt=""></p>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                    <!-- BOXFIELDCONTENT -->
-
-                    <div class="boxTable">
-                        <h4 class="tableTitle">ポイント</h4>
-                        <p class="tableSub">
-                            ポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイントポイント
-                        </p>
-                        <ul class="tableList">
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                            <li>・ポイントポイントポイントポイントポイント</li>
-                        </ul>
-                    </div>
-                    <!-- BOXTABLE -->
+                    <?php get_template_part('template-parts/single-box-network'); ?>
+                    <?php get_template_part('template-parts/single-box-company'); ?>
+                    <?php get_template_part('template-parts/single-box-field-content'); ?>
+                    <?php get_template_part('template-parts/single-box-table'); ?>
                 </div>
 
                 <div class="boxInfo">
