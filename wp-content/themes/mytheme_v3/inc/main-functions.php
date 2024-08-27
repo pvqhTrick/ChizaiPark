@@ -196,8 +196,8 @@ function get_prefectures_by_area() {
         ));
 
         if (!empty($child)):
-            foreach ($child as $child) :?>
-                <option value="<?php echo $child->slug ?>"><?php echo $child->name ?></option>
+            foreach ($child as $item) :?>
+                <option value="<?php echo $item->slug ?>"><?php echo $item->name ?></option>
             <?php endforeach;
         else: ?>
             <option value="">該当する都道府県はありません</option>
@@ -249,17 +249,16 @@ function  get_first_area($cat = 'area'){
 }
 
 
-//<script>
-// AJAX JS DEMO
+// AJAX SEARCH AREA
 add_action( 'wp_footer', 'ajax_javascript' );
 function ajax_javascript() { ?>
     <script type="text/javascript" >
         (function($){
         $(document).ready(function(){
             $('#region').change(function(){
-                var region_id = $(this).val();
+                var region_slug = $(this).val();
                 var $rowloading = $('.loading');
-                if( region_id ) {
+                if( region_slug ) {
                     $rowloading.addClass('loading');
                     $.ajax({
                         type : "post",
@@ -267,7 +266,7 @@ function ajax_javascript() { ?>
                         url : '<?php echo admin_url('admin-ajax.php');?>',
                         data : {
                             action : "get_prefecture_by_region",
-                            region_id : region_id,
+                            region_slug : region_slug,
                         },
                         context: this,
                         beforeSend: function(){
@@ -277,7 +276,7 @@ function ajax_javascript() { ?>
                             if(response.success) {
                                 var options = '<option value="0">都道府県で選択</option>';
                                 $.each(response.data, function(index, prefecture) {
-                                    options += '<option value="' + prefecture.id + '">' + prefecture.name + '</option>';
+                                    options += '<option value="' + prefecture.slug + '">' + prefecture.name + '</option>';
                                 });
                                 $('#prefecture').html(options).prop('disabled', false);
                             } else {
@@ -303,15 +302,15 @@ add_action( 'wp_ajax_get_prefecture_by_region', 'get_prefecture_by_region' );
 add_action( 'wp_ajax_nopriv_get_prefecture_by_region', 'get_prefecture_by_region' );
 
 function get_prefecture_by_region() {
-    $region_id = isset($_POST['region_id']) ? intval($_POST['region_id']) : 0;
+    $region_slug = isset($_POST['region_slug']) ? $_POST['region_slug'] : 0;
 
-    if($region_id) {
-        $prefectures =get_prefectures_by_region($region_id);
+    if($region_slug) {
+        $prefectures =get_prefectures_by_region($region_slug);
 
         if($prefectures) {
             $result = array();
             foreach($prefectures as $prefecture) {
-                $result[] = array('id' => $prefecture->term_id, 'name' => $prefecture->name);
+                $result[] = array('slug' => $prefecture->slug, 'name' => $prefecture->name);
             }
             wp_send_json_success($result);
         } else {
@@ -323,8 +322,8 @@ function get_prefecture_by_region() {
     die();
 }
 
-function get_prefectures_by_region($term_id) {
-    $parent_term = get_term_by('term_id', $term_id, 'area'); 
+function get_prefectures_by_region($term_slug) {
+    $parent_term = get_term_by('slug', $term_slug, 'area'); 
 
     if ($parent_term) {
         $child_terms = get_terms(array(

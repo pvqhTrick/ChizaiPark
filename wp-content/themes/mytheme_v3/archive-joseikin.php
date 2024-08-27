@@ -18,7 +18,7 @@ $args = array(
 $area = isset($_GET['area']) ? $_GET['area'] : '';
 if (!empty($area)) {
     $args['tax_query'] = array(
-        'relation' => 'OR',
+        'relation' => 'And',
         array(
             'taxonomy' => 'area',
             'field' => 'slug',
@@ -26,9 +26,23 @@ if (!empty($area)) {
         ),
     );
 }
+
+$prefecture = isset($_GET['prefecture']) ? $_GET['prefecture'] : '';
+if(!empty($prefecture)){
+    if (!isset($args['tax_query'])) {
+        $args['tax_query'] = array();
+    }
+
+    $args['tax_query'][] = array(
+        'taxonomy' => 'area',
+        'field' => 'slug',
+        'terms' => $prefecture,
+    );
+};
+
 $listJoseikin = new WP_Query($args);
 
-// var_dump($listJoseikin);
+// var_dump($listJoseikin->query);
 
 ?>
 
@@ -52,10 +66,11 @@ $listJoseikin = new WP_Query($args);
                     <form action="<?php echo home_url('/joseikin/') ?>" id="searchArea">
                         <div class="narrowSearch">
                             <div class="rowSearch">
-                                <select id="region">
+                                <select id="region" name="area">
+                                <option value="">都道府県で選択</option>
                                 <?php
                                 foreach ( $areas as $area ): ?>
-                                    <option value="<?php echo $area->term_id ?>"><?php echo $area->name ?></option>;
+                                    <option value="<?php echo $area->slug ?>"><?php echo $area->name ?></option>
                                 <?php endforeach; ?>
                                 </select>
                             </div>
