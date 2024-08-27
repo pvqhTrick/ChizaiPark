@@ -49,7 +49,7 @@ $listJoseikin = new WP_Query($args);
                 <h2 class="infoTitle">新着助成金制度</h2>
                 <div class="boxNarrow">
                     <h3 class="narrowTitle">絞り込み</h3>
-                    <form action="" id="searchArea">
+                    <form action="<?php echo home_url('/joseikin/') ?>" id="searchArea">
                         <div class="narrowSearch">
                             <div class="rowSearch">
                                 <select id="region">

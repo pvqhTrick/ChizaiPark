@@ -275,18 +275,18 @@ function ajax_javascript() { ?>
                         },
                         success: function(response) {
                             if(response.success) {
-                                var options = '<option value="">都道府県で選択</option>';
+                                var options = '<option value="0">都道府県で選択</option>';
                                 $.each(response.data, function(index, prefecture) {
                                     options += '<option value="' + prefecture.id + '">' + prefecture.name + '</option>';
                                 });
                                 $('#prefecture').html(options).prop('disabled', false);
                             } else {
-                                $('#prefecture').html('<option value="">No data available</option>').prop('disabled', true);
+                                $('#prefecture').html('<option value="0">利用可能なデータがありません</option>').prop('disabled', true);
                             }
                             $rowloading.removeClass('loading');
-                        },
+                        }, 
                         error: function( jqXHR, textStatus, errorThrown ) {
-                            console.log( 'The following error occurred: ' + textStatus, errorThrown );
+                            console.log( 'The following error occured: ' + textStatus, errorThrown );
                             $rowloading.removeClass('loading');
                         }
                     });
@@ -318,14 +318,12 @@ function get_prefecture_by_region() {
             wp_send_json_error('都道府県が見つかりませんでした');
         }
     } else {
-        wp_send_json_error('無効なリージョン ID');
+        wp_send_json_error('都道府県が見つかりませんでした');
     }
-
     die();
 }
 
 function get_prefectures_by_region($term_id) {
-    // Lấy term cha dựa trên slug
     $parent_term = get_term_by('term_id', $term_id, 'area'); 
 
     if ($parent_term) {
