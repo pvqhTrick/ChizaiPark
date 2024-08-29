@@ -71,8 +71,6 @@ function theme_pagination( $post_query = null ) {
         echo '<div class="pagingNav">';
         echo '<ul class="navList">';
         
-        // echo '<li class="prev"><a class="hover" href="'. previous_posts(false) .'">'. $translate['first'] .'</a></li>';
-
 
         if( $paged > 1 ){
             echo '<li class="prev"><a class="hover" href="'. previous_posts(false) .'">'. $translate['prev'] .'</a></li>';
@@ -97,14 +95,65 @@ function theme_pagination( $post_query = null ) {
             echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['next'] .'</a></li>';
         }
 
-        // echo '<li class="p-control next"><a href="'. next_posts(0,false) .'">'. $translate['last'] .'</a></li>';
-
 
       	echo '</ul>';
       	echo '</div>';
     }
 }
+// AJAX PAGINATION
+function theme_pagination_ajax($post_query = null ) {
+    global $wp_query;
+    if (isset($_POST['paged'])) {
+        $paged = intval($_POST['paged']);
+    } elseif (empty($paged)) {
+        $paged = 1;
+    }
+    var_dump($paged);
+    $translate['next'] = '>>';
+    $translate['prev'] = '<<'; 
 
+    if (empty($paged)) $paged = 1;
+    $prev = $paged - 1;             
+    $next = $paged + 1;
+
+    $end_size = 1;
+    $mid_size = 2;
+    $show_all = false;
+    $dots = false;
+
+    $pagi_query = $wp_query;
+    if (isset($post_query) && $post_query) {
+        $pagi_query = $post_query;
+    }
+
+    if (!$total = $pagi_query->max_num_pages) $total = 1;
+
+    if ($total > 1) {
+        echo '<div class="pagingNav">';
+        echo '<ul class="navList">';
+
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i == $paged) {
+                echo '<li class="active"><a>' . $i . '</a></li>';
+                $dots = true;
+            } else {
+                if ($show_all || ($i <= $end_size || ($paged && $i >= $paged - $mid_size && $i <= $paged + $mid_size) || $i > $total - $end_size)) {
+                    echo '<li><a class="ajax-page" href="" data-page="' . $i . '">' . $i . '</a></li>';
+                    $dots = true;
+                } elseif ($dots && !$show_all) {
+                    echo '<li class="dots"><a>...</a></li>';
+                    $dots = false;
+                }
+            }
+        }
+
+       
+
+        echo '</ul>';
+        echo '</div>';
+    }
+}
 
 // GET QUERY PAGED NUMBER
 function get_query_paged() {
@@ -131,7 +180,6 @@ function the_single_pagination() {
 
 // INCREASE VIEW AS POST TYPE JOSEIKIN
 function increase_post_view($post_id) {
-    // Kiểm tra nếu đây là một bài viết (post)
     if( is_single() ) {
         $views = get_post_meta($post_id, 'view', true);
         $views++;
@@ -185,6 +233,8 @@ function box_count_post($query = 'null'){
 
 
 
+add_action('wp_ajax_get_prefectures_by_area', 'get_prefectures_by_area');
+add_action('wp_ajax_nopriv_get_prefectures_by_area', 'get_prefectures_by_area');
 // AJAX HANDLER
 function get_prefectures_by_area() {
     if (isset($_GET['area'])) {
@@ -205,8 +255,32 @@ function get_prefectures_by_area() {
     }
     wp_die();
 }
-add_action('wp_ajax_get_prefectures_by_area', 'get_prefectures_by_area');
-add_action('wp_ajax_nopriv_get_prefectures_by_area', 'get_prefectures_by_area');
+
+add_action('wp_ajax_ajax_pagination', 'ajax_pagination');
+add_action('wp_ajax_nopriv_ajax_pagination', 'ajax_pagination');
+function ajax_pagination() {
+    $paged = isset($_POST['paged']) ? $_POST['paged'] : 1;
+
+    $query_args = array(
+        'post_status' => 'publish',
+        'post_type' => 'post',
+        'posts_per_page' => 5,
+        'paged' => $paged,
+    );
+
+    $ajax_query = new WP_Query($query_args);
+
+    if ($ajax_query->have_posts()) : ?>
+        <ul class="boxList">
+            <?php while ($ajax_query->have_posts()) : $ajax_query->the_post();?>
+                <li>
+                    <p class="datePost"><a href="#"><?php the_time('Y年m月d日') ?></a></p>
+                    <div class="linkPost"><a href="<?php the_permalink() ?>"><?php the_excerpt() ?></a></div>
+                </li>
+            <?php endwhile; wp_reset_postdata();?>
+        </ul>
+    <?php endif; wp_die();
+}
 
 
 function modify_search_query($query) {
@@ -235,6 +309,7 @@ function modify_search_query($query) {
     }
 }
 add_action('pre_get_posts', 'modify_search_query');
+
 
 function  get_first_area($cat = 'area'){
     $areas = get_the_terms(get_the_ID(), $cat);
@@ -288,8 +363,37 @@ function ajax_javascript() { ?>
                 }
             });
         });
-        })(jQuery)
-    </script> <?php
+        })(jQuery);
+        
+    </script>
+    <script type="text/javascript">
+        (function($){
+        $(document).on('click', '.ajax-page', function(e){
+            e.preventDefault();
+            var page = $(this).data('page');
+            $.ajax({
+                type: 'post',
+                url: '<?php echo admin_url("admin-ajax.php"); ?>',
+                data: {
+                    action: 'ajax_pagination',
+                    paged: page
+                },
+                beforeSend: function(){
+                    $('.boxList').fadeOut('slow');
+                },
+                success: function(response){
+                    $('.boxList').html(response).fadeIn('slow');
+                    $('.pagingNav').html(response.data.pagination_html);
+                    // $('html, body').animate({scrollTop: $('#content').offset().top}, 'slow');
+                },
+                error: function( jqXHR, textStatus, errorThrown ) {
+                    console.log( 'The following error occured: ' + textStatus, errorThrown );
+                }
+            });
+        });
+        })(jQuery);
+    </script>
+    <?php
 }
 
 

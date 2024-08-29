@@ -9,22 +9,32 @@ $listChizai = new WP_Query(array(
 	'posts_per_page' => 3,
 	'meta_query'=> array(
 		array(
-			'key'     => 'pickup',
-            'value'   => 'true', 
-            'compare' => '=',
-            'type'    => 'CHAR',
+			'key' => 'pickup',
+            'value' => true,
 		)
-	)
+	),
 ));
 $listVentureCapital = new WP_Query(array(
 	'post_status' => 'publish',
 	'post_type' => 'venture-capital',
 	'posts_per_page' => 3,
+	'meta_query'=> array(
+		array(
+			'key' => 'pickup',
+            'value' => true,
+		)
+	),
 ));
 $listKigyou = new WP_Query(array(
 	'post_status' => 'publish',
 	'post_type' => 'kigyou',
 	'posts_per_page' => 3,
+	'meta_query'=> array(
+		array(
+			'key' => 'pickup',
+            'value' => true,
+		)
+	),
 ));
 $listTopViewJoseikin = new WP_Query(array(
 	'post_status' => 'publish',
@@ -32,8 +42,16 @@ $listTopViewJoseikin = new WP_Query(array(
 	'posts_per_page' => 5,
 	'meta_key' => 'view', 
     'orderby' => 'meta_value_num', 
-    'order' => 'DESC',
+    'order' => 'DESC',	
 ));
+$listRankingCustom = new WP_Query(array(
+	'post_status' => 'publish',
+	'post_type' => 'joseikin',
+	'posts_per_page' => 5,
+	'meta_key' => 'view', 
+    'orderby' => 'meta_value_num', 
+    'order' => 'DESC',	
+))
 ?>
 <div class="sideBar">
 	<div class="areaPatent">
@@ -67,7 +85,7 @@ $listTopViewJoseikin = new WP_Query(array(
 			<?php while( $listChizai->have_posts() ): $listChizai->the_post(); ?>
 			<li>
 				<p class="date"><?php the_time('Y年m月d日') ?></p>
-				<?php  $categories = get_the_terms(get_the_ID(), 'categories'); ?>
+				<?php  $categories = get_the_terms(get_the_ID(), 'chizai_cat'); ?>
 				<p class="cate">
 					<a href="#"> 
 					<?php if ($categories) : ?>

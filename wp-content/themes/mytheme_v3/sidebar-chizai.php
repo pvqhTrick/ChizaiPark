@@ -1,13 +1,13 @@
 <?php 
 $categories = get_terms(array(
-    'taxonomy'   => 'categories',
+    'taxonomy'   => 'chizai_cat',
     'hide_empty' => false,
     'parent'     => 0,
 ));
  
 $recommended_posts = new WP_Query(array(
     'post_type' => 'chizai',
-    'meta_key' => 'is_recommend',
+    'meta_key' => 'pickup',
     'meta_value' => true,
     'posts_per_page' => 4,
 ));
@@ -19,7 +19,7 @@ $recommended_posts = new WP_Query(array(
         <ul class="listcate">
             <?php
             foreach ($categories as $category): ?>
-                <li><a href="<?php echo $category->slug ?>"><span><?php echo $category->name ?></span></a></li>
+                <li><a href="<?php echo home_url('/chizai/?cate=').$category->slug ?>"><span><?php echo $category->name ?></span></a></li>
             <?php endforeach; ?>
         </ul>
 

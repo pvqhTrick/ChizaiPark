@@ -3,15 +3,31 @@
  * The template for displaying Archive chizai
  */
 get_header();
-
-$listChizai = new WP_Query(array(
+$args= array(
     'post_status' => 'publish',
     'post_type' => 'chizai',
     'posts_per_page' => 5,
     'paged' => get_query_paged(),
-));
+);
 
-$categories_list = get_terms(array(), 'categories');
+$cat=isset($_GET['cate']) ? $_GET['cate'] : '';
+if($cat){
+    $args['tax_query'] = array(
+        array(
+            'taxonomy' => 'chizai_cat',
+            'field'    => 'slug',
+            'terms'    => isset($_GET['cate']) ? $_GET['cate'] : '',
+        ),
+    );
+}
+
+$listChizai = new WP_Query($args);
+$categories_list = get_terms(
+    array(
+        'taxonomy' => 'chizai_cat',
+        'hide_empty' => false,
+    )
+);
 
 ?>
 
@@ -29,22 +45,23 @@ $categories_list = get_terms(array(), 'categories');
         <div class="wrapContent">
             <div class="contentLetf areaIntell">
                 <h2 class="infoTitle">新着情報</h2>
-
                 <div class="boxNarrow">
                     <h3 class="narrowTitle">絞り込み</h3>
-                    <form action="">
+                    <form action="<?php echo home_url('/chizai/?') ?>">
                         <div class="narrowSearch">
                             <div class="rowSearch">
-                                <select id="cate">
+                                <select id="cate" name="cate">
                                     <option value="">カテゴリー</option>
                                     <?php foreach($categories_list as $cat): ?>
-                                        <option value="<?php echo $cat->slug ?>"><?php echo $cat->name ?></option>
+                                        <option value="<?php echo $cat->slug ?>" <?php isset($_GET['cate']) ? selected( $_GET['cate'] , $cat->slug): ''; ?>>
+                                            <?php echo $cat->name ?>
+                                        </option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
                             <div class="boxaction">
-                                <div class="clear"><input type="reset" name="reset" value="クリア" class="noto"></div>
-                                <div class="find"><input type="submit" name="find" value="検索する" class="noto"></div>
+                                <div class="clear"><input type="reset" value="クリア" class="noto"></div>
+                                <div class="find"><input type="submit" value="検索する" class="noto"></div>
                             </div>
                         </div>
                     </form>
@@ -54,7 +71,7 @@ $categories_list = get_terms(array(), 'categories');
                 <?php if( $listChizai->have_posts() ): ?>
                 <ul class="listPost">
                     <?php while( $listChizai->have_posts() ): $listChizai->the_post(); 
-                    $categories = get_the_terms(get_the_ID(), 'categories');
+                    $categories = get_the_terms(get_the_ID(), 'chizai_cat');
                     // var_dump($categories);
                     ?>
                     

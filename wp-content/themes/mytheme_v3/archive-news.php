@@ -3,9 +3,9 @@ get_header();
 
 $listNews = new WP_Query(array(
     'post_status' => 'publish',
-    'post_type' => 'news',
+    'post_type' => 'post',
     'posts_per_page' => 5,
-    'paged' => get_query_paged()
+    'paged' => get_query_paged(),
 ));
 ?>
 
@@ -27,7 +27,6 @@ $listNews = new WP_Query(array(
                     <h3 class="boxTitle">新着知財ニュース</h3>
                     
                 </div>
-                <?php box_count_post( $listNews ); ?>
                 <?php if( $listNews->have_posts() ): ?>
                 <ul class="boxList">
                     <?php while( $listNews->have_posts() ): $listNews->the_post(); ?>
@@ -39,7 +38,7 @@ $listNews = new WP_Query(array(
                 </ul>
                 <?php endif; ?>
 
-                <?php theme_pagination( $listNews ); ?>
+                <?php theme_pagination_ajax( $listNews ); ?>
             </div>
         </div>
     </div>

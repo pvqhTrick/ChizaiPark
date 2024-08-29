@@ -1,5 +1,6 @@
 <?php
 $listJoseikin = new WP_Query(array(
+    'post_status' => 'publish',
     'post_type' => 'joseikin',
     'posts_per_page' => '5'
 ));

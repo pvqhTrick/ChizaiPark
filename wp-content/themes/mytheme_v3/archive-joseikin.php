@@ -48,14 +48,6 @@ $listJoseikin = new WP_Query($args);
 ?>
 
 <div id="content">
-    <!-- <div id="breadcrumbs">
-        <div class="bigInner">
-            <ul class="bcList">
-                <li><a href="#">知財パークTOP</a></li>
-                <li>助成金情報TOP</li>
-            </ul>
-        </div>
-    </div> -->
     <?php get_template_part('site-breadcrumb'); ?>
     <!-- #breadcrumbs -->
     <div class="bigInner">
@@ -69,12 +61,10 @@ $listJoseikin = new WP_Query($args);
                             <div class="rowSearch">
                                 <select id="region" name="area">
                                 <option value="">都道府県で選択</option>
-                                <?php
-                                foreach ( $areas as $area ):
-                                    $current_area = isset( $_GET['area'] ) ? $_GET['area'] : 0;
-                                    // if( $current == $area->name ) 
-                                ?>
-                                    <option value="<?php echo $area->slug ?>"><?php echo $area->name ?></option>
+                                <?php foreach ( $areas as $area ): ?>
+                                    <option value="<?php echo $area->slug ?>" <?php isset($_GET['area']) ? selected($_GET['area'], $area->slug) : ''; ?>>
+                                        <?php echo $area->name ?>
+                                    </option>
                                 <?php endforeach; ?>
                                 </select>
                             </div>
@@ -82,6 +72,14 @@ $listJoseikin = new WP_Query($args);
                             <div class="rowSearch">
                                 <select id="prefecture" name="prefecture" disabled>
                                     <option value="">都道府県で選択</option>
+                                    <?php if(!empty($_GET['area'])): 
+                                        $prefectures = get_prefectures_by_region($_GET['area']);
+                                        foreach($prefectures as $prefecture): ?>
+                                            <option value="<?php echo $prefecture->slug ?>" <?php selected($_GET['prefecture'], $prefecture->slug); ?>>
+                                                <?php echo $prefecture->name ?>
+                                            </option>
+                                        <?php endforeach; 
+                                    endif; ?>
                                 </select>
                             </div>
                         </div>
