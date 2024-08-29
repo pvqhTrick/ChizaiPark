@@ -41,7 +41,6 @@ $listSeminar = new WP_Query(array(
                 <?php theme_pagination( $listSeminar ); ?>
                 <!-- pagingNav -->
                 <?php endif; ?>
-                
             </div>
             <?php get_sidebar('joseikin') ?>
         </div>

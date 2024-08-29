@@ -29,9 +29,14 @@
 	<!-- areaPatent -->
 
 	<?php get_template_part('template-parts/sidebar-chizai') ?>
+
 	<?php get_template_part('template-parts/sidebar-venture-capital') ?>
+
 	<?php get_template_part('template-parts/sidebar-kigyou') ?>
+
 	<?php get_template_part('template-parts/sidebar-topview-joseikin') ?>
+	
 	<?php get_template_part('template-parts/sidebar-topview-custom') ?>
+
 </div>
 <!-- sideBar -->
