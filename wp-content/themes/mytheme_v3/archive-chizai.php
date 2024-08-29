@@ -72,7 +72,6 @@ $categories_list = get_terms(
                 <ul class="listPost">
                     <?php while( $listChizai->have_posts() ): $listChizai->the_post(); 
                     $categories = get_the_terms(get_the_ID(), 'chizai_cat');
-                    // var_dump($categories);
                     ?>
                     
                     <li>

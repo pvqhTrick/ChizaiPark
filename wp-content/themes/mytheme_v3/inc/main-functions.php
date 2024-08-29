@@ -108,7 +108,7 @@ function theme_pagination_ajax($post_query = null ) {
     } elseif (empty($paged)) {
         $paged = 1;
     }
-    var_dump($paged);
+    // var_dump($paged);
     $translate['next'] = '>>';
     $translate['prev'] = '<<'; 
 
@@ -136,18 +136,10 @@ function theme_pagination_ajax($post_query = null ) {
         for ($i = 1; $i <= $total; $i++) {
             if ($i == $paged) {
                 echo '<li class="active"><a>' . $i . '</a></li>';
-                $dots = true;
             } else {
-                if ($show_all || ($i <= $end_size || ($paged && $i >= $paged - $mid_size && $i <= $paged + $mid_size) || $i > $total - $end_size)) {
-                    echo '<li><a class="ajax-page" href="" data-page="' . $i . '">' . $i . '</a></li>';
-                    $dots = true;
-                } elseif ($dots && !$show_all) {
-                    echo '<li class="dots"><a>...</a></li>';
-                    $dots = false;
-                }
+                echo '<li><a class="ajax-page" href="" data-page="' . $i . '">' . $i . '</a></li>';
             }
         }
-
        
 
         echo '</ul>';
@@ -269,7 +261,7 @@ function ajax_pagination() {
     );
 
     $ajax_query = new WP_Query($query_args);
-
+    ob_start();
     if ($ajax_query->have_posts()) : ?>
         <ul class="boxList">
             <?php while ($ajax_query->have_posts()) : $ajax_query->the_post();?>
@@ -279,7 +271,19 @@ function ajax_pagination() {
                 </li>
             <?php endwhile; wp_reset_postdata();?>
         </ul>
-    <?php endif; wp_die();
+    <?php endif; 
+    $posts_html = ob_get_clean();
+
+    ob_start();
+    theme_pagination_ajax($ajax_query);
+    $pagination_html = ob_get_clean();
+
+    wp_send_json_success(array(
+        'posts_html' => $posts_html,
+        'pagination_html' => $pagination_html,
+    ));
+    
+    wp_die();
 }
 
 
@@ -382,7 +386,7 @@ function ajax_javascript() { ?>
                     $('.boxList').fadeOut('slow');
                 },
                 success: function(response){
-                    $('.boxList').html(response).fadeIn('slow');
+                    $('.boxList').html(response.data.posts_html).fadeIn('slow');
                     $('.pagingNav').html(response.data.pagination_html);
                     // $('html, body').animate({scrollTop: $('#content').offset().top}, 'slow');
                 },
