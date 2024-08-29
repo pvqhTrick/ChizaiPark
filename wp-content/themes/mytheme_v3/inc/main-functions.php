@@ -184,6 +184,9 @@ add_action('wp_head', function() {
     }
 });
 
+function get_view_total($chizai_id){
+    return $total_views = get_post_meta($chizai_id, 'view', true);
+}
 
 
 
@@ -214,8 +217,6 @@ function display_mainTitle(){
 function box_count_post($query = 'null'){ 
     $found_posts = $query->found_posts;
     $paged = isset($query->query_vars['paged']) ? $query->query_vars['paged'] : 1;
-    // var_dump($query);
-    // var_dump($found_posts, $paged);
     $number_paged = 5;
 ?>
     <p class="boxCount">
@@ -347,7 +348,7 @@ function ajax_javascript() { ?>
                         },
                         context: this,
                         beforeSend: function(){
-                            $('#prefecture').prop('disabled', true);
+                            // $('#prefecture').prop('disabled', true);
                         },
                         success: function(response) {
                             if(response.success) {
@@ -355,9 +356,9 @@ function ajax_javascript() { ?>
                                 $.each(response.data, function(index, prefecture) {
                                     options += '<option value="' + prefecture.slug + '">' + prefecture.name + '</option>';
                                 });
-                                $('#prefecture').html(options).prop('disabled', false);
+                                // $('#prefecture').html(options).prop('disabled', false);
                             } else {
-                                $('#prefecture').html('<option value="">利用可能なデータがありません</option>').prop('disabled', true);
+                                // $('#prefecture').html('<option value="">利用可能なデータがありません</option>').prop('disabled', true);
                             }
                         }, 
                         error: function( jqXHR, textStatus, errorThrown ) {

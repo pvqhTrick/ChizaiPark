@@ -70,7 +70,7 @@ $listJoseikin = new WP_Query($args);
                             </div>
                             <!-- AJAX -->
                             <div class="rowSearch">
-                                <select id="prefecture" name="prefecture" disabled>
+                                <select id="prefecture" name="prefecture">
                                     <option value="">都道府県で選択</option>
                                     <?php if(!empty($_GET['area'])): 
                                         $prefectures = get_prefectures_by_region($_GET['area']);

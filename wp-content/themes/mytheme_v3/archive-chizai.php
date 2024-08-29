@@ -16,7 +16,7 @@ if($cat){
         array(
             'taxonomy' => 'chizai_cat',
             'field'    => 'slug',
-            'terms'    => isset($_GET['cate']) ? $_GET['cate'] : '',
+            'terms'    => $_GET['cate'],
         ),
     );
 }
